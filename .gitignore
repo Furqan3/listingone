@@ -1,3 +1,10 @@
-.env
-ai_helpers/__pycache__/
-__pycache__/
+/docs
+/backend/.env
+
+/frontend/node_modules
+/frontend/.next
+/frontend/.turbo
+/frontend/.parcel-cache
+/frontend/.vercel
+/frontend/.DS_Store
+/frontend/.env
