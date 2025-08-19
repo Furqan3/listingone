@@ -99,8 +99,8 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onClose }) => {
       setMessages((prev) => [...prev, assistantMessage])
       setSessionId(response.data.session_id)
 
-      if (response.data.user_data && response.data.user_data.length > 0) {
-        setUserData(response.data.user_data[0])
+      if (response.data.user_data) {
+        setUserData(response.data.user_data)
       }
 
       setConversationComplete(response.data.conversation_complete)

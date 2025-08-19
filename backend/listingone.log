@@ -1,0 +1,67 @@
+2025-08-19 10:38:09,312 - main - INFO - Chat request received: session_id=None, message_length=2
+2025-08-19 10:38:09,312 - main - INFO - New conversation started: b3477e0a-c06a-41fb-a8a8-a3fde3e394a5
+2025-08-19 10:38:21,422 - main - INFO - AI response generated for session b3477e0a-c06a-41fb-a8a8-a3fde3e394a5
+2025-08-19 10:38:21,422 - main - INFO - Chat response completed for session b3477e0a-c06a-41fb-a8a8-a3fde3e394a5
+2025-08-19 10:40:38,929 - main - INFO - Chat request received: session_id=None, message_length=2
+2025-08-19 10:40:38,930 - main - INFO - New conversation started: 56193c44-31d8-42a4-8f4a-fbb41925e5d0
+2025-08-19 10:40:41,370 - main - INFO - AI response generated for session 56193c44-31d8-42a4-8f4a-fbb41925e5d0
+2025-08-19 10:40:41,370 - main - INFO - Chat response completed for session 56193c44-31d8-42a4-8f4a-fbb41925e5d0
+2025-08-19 10:40:49,044 - main - INFO - Chat request received: session_id=56193c44-31d8-42a4-8f4a-fbb41925e5d0, message_length=12
+2025-08-19 10:40:50,005 - main - INFO - AI response generated for session 56193c44-31d8-42a4-8f4a-fbb41925e5d0
+2025-08-19 10:40:50,005 - main - INFO - Chat response completed for session 56193c44-31d8-42a4-8f4a-fbb41925e5d0
+2025-08-19 10:41:36,207 - main - INFO - Chat request received: session_id=56193c44-31d8-42a4-8f4a-fbb41925e5d0, message_length=20
+2025-08-19 10:41:37,918 - main - INFO - AI response generated for session 56193c44-31d8-42a4-8f4a-fbb41925e5d0
+2025-08-19 10:41:37,918 - main - INFO - Chat response completed for session 56193c44-31d8-42a4-8f4a-fbb41925e5d0
+2025-08-19 10:41:48,871 - main - INFO - Chat request received: session_id=56193c44-31d8-42a4-8f4a-fbb41925e5d0, message_length=13
+2025-08-19 10:41:50,105 - main - INFO - AI response generated for session 56193c44-31d8-42a4-8f4a-fbb41925e5d0
+2025-08-19 10:41:50,105 - main - INFO - Chat response completed for session 56193c44-31d8-42a4-8f4a-fbb41925e5d0
+2025-08-19 10:41:50,106 - main - ERROR - Chat error for session 56193c44-31d8-42a4-8f4a-fbb41925e5d0: 1 validation error for ChatResponse
+user_data
+  Input should be a valid dictionary [type=dict_type, input_value=[{}], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/dict_type
+2025-08-19 10:48:41,047 - main - INFO - Chat request received: session_id=None, message_length=12
+2025-08-19 10:48:41,048 - main - INFO - New conversation started: 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:48:43,169 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:48:43,169 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:49:05,689 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=21
+2025-08-19 10:49:07,388 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:49:07,389 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:49:17,833 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=13
+2025-08-19 10:49:19,964 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:49:19,964 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:49:27,057 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=3
+2025-08-19 10:49:28,084 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:49:28,084 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:49:37,777 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=3
+2025-08-19 10:49:39,474 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:49:39,474 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:49:47,617 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=4
+2025-08-19 10:49:50,125 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:49:50,126 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:50:00,329 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=5
+2025-08-19 10:50:01,668 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:50:01,669 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:50:07,841 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=1
+2025-08-19 10:50:09,766 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:50:09,766 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:50:22,619 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=1
+2025-08-19 10:50:24,327 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:50:24,327 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:50:36,034 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=10
+2025-08-19 10:50:37,694 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:50:37,695 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:50:44,674 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=9
+2025-08-19 10:50:47,196 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:50:47,196 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:51:01,258 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=3
+2025-08-19 10:51:07,959 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:51:07,959 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:51:18,859 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=8
+2025-08-19 10:51:24,478 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:51:24,479 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:51:43,908 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=2
+2025-08-19 10:51:48,976 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:51:48,976 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:52:02,788 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=2
+2025-08-19 10:52:06,934 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 10:52:06,935 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972

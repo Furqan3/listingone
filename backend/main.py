@@ -10,8 +10,8 @@ import os
 import logging
 from datetime import datetime
 import smtplib
-from email.mime.text import MimeText
-from email.mime.multipart import MimeMultipart
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 
 # Import your existing AI helpers
@@ -117,7 +117,7 @@ class EmailService:
                 logger.warning("Email credentials not configured, skipping welcome email")
                 return False
 
-            msg = MimeMultipart('alternative')
+            msg = MIMEMultipart('alternative')
             msg['From'] = self.email
             msg['To'] = user_email
             msg['Subject'] = f"Welcome to AIREA - Your {lead_type.title()} Journey Starts Here! 🏠"
@@ -198,8 +198,8 @@ This is an automated message. Please do not reply directly to this email.
             """
 
             # Attach both versions
-            msg.attach(MimeText(text_body, 'plain'))
-            msg.attach(MimeText(html_body, 'html'))
+            msg.attach(MIMEText(text_body, 'plain'))
+            msg.attach(MIMEText(html_body, 'html'))
 
             server = smtplib.SMTP(self.smtp_server, self.smtp_port)
             server.starttls()
@@ -217,7 +217,7 @@ This is an automated message. Please do not reply directly to this email.
     def send_notification_email(self, user_data: Dict):
         """Send notification to team about new lead"""
         try:
-            msg = MimeMultipart()
+            msg = MIMEMultipart()
             msg['From'] = self.email
             msg['To'] = self.to_email
             msg['Subject'] = f"New {user_data.get('user_buying_or_selling', 'Unknown')} Lead - {user_data.get('user_name', 'Unknown')}"
@@ -246,7 +246,7 @@ This is an automated message. Please do not reply directly to this email.
             ListingOne.ai Lead Management System
             """
 
-            msg.attach(MimeText(body, 'plain'))
+            msg.attach(MIMEText(body, 'plain'))
 
             server = smtplib.SMTP(self.smtp_server, self.smtp_port)
             server.starttls()
@@ -306,33 +306,38 @@ async def chat_endpoint(chat_message: ChatMessage, background_tasks: BackgroundT
             try:
                 structured_data = structure_response(conversation["history"])
                 if structured_data:
-                    extracted_data = json.loads(structured_data)
-                    conversation["user_data"] = extracted_data
-                    
-                    # Check if conversation is complete (has essential data)
-                    if extracted_data and len(extracted_data) > 0:
-                        first_user = extracted_data[0]
-                        if (first_user.get("user_name") and 
-                            first_user.get("user_email") and 
-                            first_user.get("user_phone_number") and
-                            first_user.get("user_buying_or_selling")):
-                            
+                    parsed_data = json.loads(structured_data)
+                    # structure_response returns a list, but we need the first item as a dict
+                    if parsed_data and len(parsed_data) > 0:
+                        extracted_data = parsed_data[0]  # Get the first (and only) user object
+                        conversation["user_data"] = extracted_data
+
+                        # Check if conversation is complete (has essential data)
+                        if (extracted_data.get("user_name") and
+                            extracted_data.get("user_email") and
+                            extracted_data.get("user_phone_number") and
+                            extracted_data.get("user_buying_or_selling")):
+
                             conversation_complete = True
                             conversation["conversation_complete"] = True
-                            
+
                             # Send emails in background
                             background_tasks.add_task(
                                 email_service.send_welcome_email,
-                                first_user.get("user_email"),
-                                first_user.get("user_name"),
-                                first_user.get("user_buying_or_selling")
+                                extracted_data.get("user_email"),
+                                extracted_data.get("user_name"),
+                                extracted_data.get("user_buying_or_selling")
                             )
                             background_tasks.add_task(
                                 email_service.send_notification_email,
-                                first_user
+                                extracted_data
                             )
+                    else:
+                        # If no valid data, set extracted_data to None
+                        extracted_data = None
             except Exception as e:
                 logger.error(f"Error extracting user data for session {session_id}: {e}")
+                extracted_data = None
 
         # Store the conversation
         conversations[session_id] = conversation
@@ -427,4 +432,4 @@ async def health_check():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000)

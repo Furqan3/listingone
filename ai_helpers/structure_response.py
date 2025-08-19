@@ -22,7 +22,7 @@ class user_data(BaseModel):
     user_current_condition_assessment: str
 
 def structure_response(history):
-    prompt = f"history: {history}\ user: Get all the info of the user"
+    prompt = f"history: {history} user: Get all the info of the user"
     client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
     response = client.models.generate_content(
         model=os.getenv("GEMINI_MODEL"),
