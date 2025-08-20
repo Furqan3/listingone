@@ -4,65 +4,64 @@
 
 /* Custom Airnt Font Family */
 @font-face {
-  font-family: 'Airnt';
-  src: url('/fonts/Airnt-qZey2.otf') format('opentype');
+  font-family: "Airnt";
+  src: url("/fonts/Airnt-qZey2.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Airnt';
-  src: url('/fonts/AirntBold-VGo0z.otf') format('opentype');
+  font-family: "Airnt";
+  src: url("/fonts/AirntBold-VGo0z.otf") format("opentype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'AirntQuantum';
-  src: url('/fonts/AirntQuantum-JRMra.otf') format('opentype');
+  font-family: "AirntQuantum";
+  src: url("/fonts/AirntQuantum-JRMra.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
-
-/* Updated to use custom color palette */
+/* Updated to modern light theme with cyan primary and orange accent */
 :root {
-  --background: #201B26;
-  --foreground: #f9fafb;
-  --card: #2a2530;
-  --card-foreground: #f3f4f6;
-  --popover: #2a2530;
-  --popover-foreground: #f9fafb;
-  --primary: #F2A922;
-  --primary-foreground: #201B26;
-  --secondary: #F25D07;
+  --background: #ffffff;
+  --foreground: #4b5563;
+  --card: #f9fafb;
+  --card-foreground: #4b5563;
+  --popover: #ffffff;
+  --popover-foreground: #4b5563;
+  --primary: #0891b2;
+  --primary-foreground: #ffffff;
+  --secondary: #f97316;
   --secondary-foreground: #ffffff;
-  --muted: #3a3540;
-  --muted-foreground: #A66E4E;
-  --accent: #F25D07;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+  --accent: #f97316;
   --accent-foreground: #ffffff;
-  --destructive: #8c1d04;
+  --destructive: #e3342f;
   --destructive-foreground: #ffffff;
-  --border: #d1d5db;
-  --input: #f8fafc;
-  --ring: rgba(242, 169, 34, 0.3);
-  --chart-1: #f2a922;
-  --chart-2: #f25d07;
-  --chart-3: #a66e4e;
-  --chart-4: #8c1d04;
-  --chart-5: #201b26;
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --ring: rgba(8, 145, 178, 0.5);
+  --chart-1: #0891b2;
+  --chart-2: #f97316;
+  --chart-3: #6b7280;
+  --chart-4: #6ee7b7;
+  --chart-5: #fbbf24;
   --radius: 0.5rem;
   --sidebar: #ffffff;
-  --sidebar-foreground: #201b26;
-  --sidebar-primary: #f2a922;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f25d07;
+  --sidebar-foreground: #4b5563;
+  --sidebar-primary: #f9fafb;
+  --sidebar-primary-foreground: #4b5563;
+  --sidebar-accent: #f97316;
   --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #d1d5db;
-  --sidebar-ring: rgba(242, 169, 34, 0.3);
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: rgba(8, 145, 178, 0.3);
 }
 
 html,
@@ -116,7 +115,7 @@ body {
   background: linear-gradient(135deg, var(--background) 0%, var(--muted) 100%);
 }
 
-/* Updated gradient text to use new color palette */
+/* Updated gradient text to use new cyan to orange gradient */
 .gradient-text {
   background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
@@ -140,7 +139,7 @@ body {
   }
 }
 
-/* Modern scrollbar styling */
+/* Updated scrollbar styling for light theme */
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
@@ -166,7 +165,7 @@ body {
 
 .btn-hover:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(8, 145, 178, 0.1), 0 8px 10px -6px rgba(8, 145, 178, 0.1);
 }
 
 /* Adding welcome logo animations */
