@@ -39,6 +39,27 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onClose }) => {
   const [isMinimized, setIsMinimized] = useState(false)
   const [conversationComplete, setConversationComplete] = useState(false)
 
+  // Enhanced UI state
+  const [isTyping, setIsTyping] = useState(false)
+  const [showSuggestions, setShowSuggestions] = useState(true)
+  const [leadScore, setLeadScore] = useState<any>(null)
+  const [conversationProgress, setConversationProgress] = useState<any>(null)
+  const [quickReplies, setQuickReplies] = useState<string[]>([])
+
+  // Smart suggestions based on conversation state
+  const getSmartSuggestions = () => {
+    if (!userData?.user_name) {
+      return ["I'm looking to sell my house", "I want to buy a home", "What's my property worth?"]
+    }
+    if (!userData?.user_email) {
+      return ["john@example.com", "jane.smith@email.com", "Let me provide my email"]
+    }
+    if (!userData?.user_buying_or_selling) {
+      return ["I'm selling", "I'm buying", "Just exploring options"]
+    }
+    return []
+  }
+
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -104,6 +125,18 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onClose }) => {
       }
 
       setConversationComplete(response.data.conversation_complete)
+
+      // Update enhanced UI state
+      if (response.data.lead_score) {
+        setLeadScore(response.data.lead_score)
+      }
+
+      if (response.data.progress) {
+        setConversationProgress(response.data.progress)
+      }
+
+      // Update quick replies based on conversation state
+      setQuickReplies(getSmartSuggestions())
     } catch (error) {
       console.error("Error sending message:", error)
       const errorMessage: Message = {

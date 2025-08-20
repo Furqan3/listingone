@@ -105,3 +105,116 @@ user_data
 2025-08-20 09:40:25,861 - main - INFO - AI response generated for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
 2025-08-20 09:40:25,862 - main - INFO - Data validation for session abfca5b7-3ce9-40c1-a8e3-393c3595da89: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
 2025-08-20 09:40:25,863 - main - INFO - Chat response completed for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 10:08:38,804 - main - INFO - Chat request received: session_id=None, message_length=41
+2025-08-20 10:08:38,805 - main - INFO - New conversation started: 50f64057-a3be-455c-917b-d3735d259232
+2025-08-20 10:08:41,881 - main - INFO - AI response generated for session 50f64057-a3be-455c-917b-d3735d259232
+2025-08-20 10:08:41,881 - main - INFO - Chat response completed for session 50f64057-a3be-455c-917b-d3735d259232
+2025-08-20 10:08:41,886 - main - INFO - Chat request received: session_id=50f64057-a3be-455c-917b-d3735d259232, message_length=65
+2025-08-20 10:08:48,410 - main - INFO - AI response generated for session 50f64057-a3be-455c-917b-d3735d259232
+2025-08-20 10:08:48,410 - main - INFO - Chat response completed for session 50f64057-a3be-455c-917b-d3735d259232
+2025-08-20 10:08:49,918 - main - INFO - Chat request received: session_id=None, message_length=34
+2025-08-20 10:08:49,918 - main - INFO - New conversation started: 13d7fd85-b59b-4fde-91e5-7ba2509934e3
+2025-08-20 10:08:53,225 - main - INFO - AI response generated for session 13d7fd85-b59b-4fde-91e5-7ba2509934e3
+2025-08-20 10:08:53,226 - main - INFO - Chat response completed for session 13d7fd85-b59b-4fde-91e5-7ba2509934e3
+2025-08-20 10:12:46,669 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:12:55,962 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:12:56,054 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:13:07,201 - main - INFO - Chat request received: session_id=None, message_length=41
+2025-08-20 10:13:07,202 - main - INFO - New conversation started: 0e0e8c73-d54c-411f-90c7-5473e236341e
+2025-08-20 10:13:09,301 - main - INFO - AI response generated for session 0e0e8c73-d54c-411f-90c7-5473e236341e
+2025-08-20 10:13:09,301 - main - INFO - Chat response completed for session 0e0e8c73-d54c-411f-90c7-5473e236341e
+2025-08-20 10:13:09,306 - main - INFO - Chat request received: session_id=0e0e8c73-d54c-411f-90c7-5473e236341e, message_length=65
+2025-08-20 10:13:12,101 - main - INFO - AI response generated for session 0e0e8c73-d54c-411f-90c7-5473e236341e
+2025-08-20 10:13:12,101 - main - INFO - Chat response completed for session 0e0e8c73-d54c-411f-90c7-5473e236341e
+2025-08-20 10:13:13,609 - main - INFO - Chat request received: session_id=None, message_length=34
+2025-08-20 10:13:13,609 - main - INFO - New conversation started: 17fb152f-2646-4908-8a5f-bd36e49d47ba
+2025-08-20 10:13:18,568 - main - INFO - AI response generated for session 17fb152f-2646-4908-8a5f-bd36e49d47ba
+2025-08-20 10:13:18,569 - main - INFO - Chat response completed for session 17fb152f-2646-4908-8a5f-bd36e49d47ba
+2025-08-20 10:13:50,063 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:13:50,147 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:22:41,552 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:22:41,696 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:22:45,652 - main - INFO - Chat request received: session_id=None, message_length=6
+2025-08-20 10:22:45,652 - main - INFO - New conversation started: 1a5f76e6-008b-4f5b-bf31-dee456ed24a7
+2025-08-20 10:22:48,143 - main - INFO - AI response generated for session 1a5f76e6-008b-4f5b-bf31-dee456ed24a7
+2025-08-20 10:22:48,143 - main - INFO - Chat response completed for session 1a5f76e6-008b-4f5b-bf31-dee456ed24a7
+2025-08-20 10:22:59,012 - main - INFO - Chat request received: session_id=1a5f76e6-008b-4f5b-bf31-dee456ed24a7, message_length=20
+2025-08-20 10:23:00,336 - main - INFO - AI response generated for session 1a5f76e6-008b-4f5b-bf31-dee456ed24a7
+2025-08-20 10:23:00,336 - main - INFO - Chat response completed for session 1a5f76e6-008b-4f5b-bf31-dee456ed24a7
+2025-08-20 10:26:32,729 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:26:32,859 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:26:59,686 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:27:12,946 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:27:13,058 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:28:20,571 - main - INFO - Chat request received: session_id=None, message_length=12
+2025-08-20 10:28:20,571 - main - INFO - New conversation started: 6a6525d8-ceda-41fc-a59e-bd42fa0f5427
+2025-08-20 10:28:22,765 - main - INFO - AI response generated for session 6a6525d8-ceda-41fc-a59e-bd42fa0f5427
+2025-08-20 10:28:22,765 - main - INFO - Chat response completed for session 6a6525d8-ceda-41fc-a59e-bd42fa0f5427
+2025-08-20 10:28:31,219 - main - INFO - Chat request received: session_id=6a6525d8-ceda-41fc-a59e-bd42fa0f5427, message_length=20
+2025-08-20 10:28:33,302 - main - INFO - AI response generated for session 6a6525d8-ceda-41fc-a59e-bd42fa0f5427
+2025-08-20 10:28:33,302 - main - INFO - Chat response completed for session 6a6525d8-ceda-41fc-a59e-bd42fa0f5427
+2025-08-20 10:29:26,376 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:29:46,945 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:29:47,056 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:44:02,123 - main - INFO - Admin login successful: admin
+2025-08-20 10:44:23,838 - main - INFO - Chat request received: session_id=None, message_length=12
+2025-08-20 10:44:23,838 - main - INFO - New conversation started: 88827954-8a59-496d-982f-8835cb1bd91b
+2025-08-20 10:44:26,154 - main - INFO - AI response generated for session 88827954-8a59-496d-982f-8835cb1bd91b
+2025-08-20 10:44:26,154 - main - INFO - Chat response completed for session 88827954-8a59-496d-982f-8835cb1bd91b
+2025-08-20 10:53:42,983 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:53:43,104 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:54:01,356 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:54:01,488 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:55:42,324 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:55:42,466 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:57:14,535 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:57:14,689 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:58:28,282 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:58:28,393 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 10:58:58,071 - main - INFO - Admin login successful: admin
+2025-08-20 10:59:16,863 - main - INFO - Chat request received: session_id=None, message_length=41
+2025-08-20 10:59:16,864 - main - INFO - New conversation started: ab218dcb-6b53-4b7a-833b-94f09eedfcf1
+2025-08-20 10:59:16,868 - main - INFO - AI response generated for session ab218dcb-6b53-4b7a-833b-94f09eedfcf1
+2025-08-20 10:59:16,868 - main - INFO - Chat response completed for session ab218dcb-6b53-4b7a-833b-94f09eedfcf1
+2025-08-20 10:59:17,373 - main - INFO - Chat request received: session_id=ab218dcb-6b53-4b7a-833b-94f09eedfcf1, message_length=65
+2025-08-20 10:59:17,376 - main - INFO - AI response generated for session ab218dcb-6b53-4b7a-833b-94f09eedfcf1
+2025-08-20 10:59:17,377 - main - INFO - Chat response completed for session ab218dcb-6b53-4b7a-833b-94f09eedfcf1
+2025-08-20 10:59:17,881 - main - INFO - Chat request received: session_id=ab218dcb-6b53-4b7a-833b-94f09eedfcf1, message_length=49
+2025-08-20 10:59:17,885 - main - INFO - AI response generated for session ab218dcb-6b53-4b7a-833b-94f09eedfcf1
+2025-08-20 10:59:17,885 - main - INFO - Chat response completed for session ab218dcb-6b53-4b7a-833b-94f09eedfcf1
+2025-08-20 10:59:18,392 - main - INFO - Chat request received: session_id=ab218dcb-6b53-4b7a-833b-94f09eedfcf1, message_length=41
+2025-08-20 10:59:18,397 - main - INFO - AI response generated for session ab218dcb-6b53-4b7a-833b-94f09eedfcf1
+2025-08-20 10:59:18,397 - main - INFO - Chat response completed for session ab218dcb-6b53-4b7a-833b-94f09eedfcf1
+2025-08-20 10:59:18,903 - main - INFO - Chat request received: session_id=None, message_length=32
+2025-08-20 10:59:18,904 - main - INFO - New conversation started: 95d805f0-554a-42f9-aedd-fb064ad84391
+2025-08-20 10:59:18,908 - main - INFO - AI response generated for session 95d805f0-554a-42f9-aedd-fb064ad84391
+2025-08-20 10:59:18,908 - main - INFO - Chat response completed for session 95d805f0-554a-42f9-aedd-fb064ad84391
+2025-08-20 10:59:19,414 - main - INFO - Chat request received: session_id=95d805f0-554a-42f9-aedd-fb064ad84391, message_length=51
+2025-08-20 10:59:19,417 - main - INFO - AI response generated for session 95d805f0-554a-42f9-aedd-fb064ad84391
+2025-08-20 10:59:19,417 - main - INFO - Chat response completed for session 95d805f0-554a-42f9-aedd-fb064ad84391
+2025-08-20 10:59:19,923 - main - INFO - Chat request received: session_id=95d805f0-554a-42f9-aedd-fb064ad84391, message_length=42
+2025-08-20 10:59:19,928 - main - INFO - AI response generated for session 95d805f0-554a-42f9-aedd-fb064ad84391
+2025-08-20 10:59:19,928 - main - INFO - Chat response completed for session 95d805f0-554a-42f9-aedd-fb064ad84391
+2025-08-20 10:59:20,435 - main - INFO - Chat request received: session_id=95d805f0-554a-42f9-aedd-fb064ad84391, message_length=45
+2025-08-20 10:59:20,439 - main - INFO - AI response generated for session 95d805f0-554a-42f9-aedd-fb064ad84391
+2025-08-20 10:59:20,439 - main - INFO - Chat response completed for session 95d805f0-554a-42f9-aedd-fb064ad84391
+2025-08-20 10:59:20,946 - main - INFO - Chat request received: session_id=None, message_length=26
+2025-08-20 10:59:20,947 - main - INFO - New conversation started: d417ecda-54c1-40ae-8edd-1a184e810dc2
+2025-08-20 10:59:20,952 - main - INFO - AI response generated for session d417ecda-54c1-40ae-8edd-1a184e810dc2
+2025-08-20 10:59:20,952 - main - INFO - Chat response completed for session d417ecda-54c1-40ae-8edd-1a184e810dc2
+2025-08-20 10:59:21,457 - main - INFO - Chat request received: session_id=d417ecda-54c1-40ae-8edd-1a184e810dc2, message_length=44
+2025-08-20 10:59:21,460 - main - INFO - AI response generated for session d417ecda-54c1-40ae-8edd-1a184e810dc2
+2025-08-20 10:59:21,460 - main - INFO - Chat response completed for session d417ecda-54c1-40ae-8edd-1a184e810dc2
+2025-08-20 10:59:21,964 - main - INFO - Chat request received: session_id=d417ecda-54c1-40ae-8edd-1a184e810dc2, message_length=44
+2025-08-20 10:59:21,967 - main - INFO - AI response generated for session d417ecda-54c1-40ae-8edd-1a184e810dc2
+2025-08-20 10:59:21,968 - main - INFO - Chat response completed for session d417ecda-54c1-40ae-8edd-1a184e810dc2
+2025-08-20 10:59:22,473 - main - INFO - Chat request received: session_id=d417ecda-54c1-40ae-8edd-1a184e810dc2, message_length=30
+2025-08-20 10:59:22,476 - main - INFO - AI response generated for session d417ecda-54c1-40ae-8edd-1a184e810dc2
+2025-08-20 10:59:22,476 - main - INFO - Chat response completed for session d417ecda-54c1-40ae-8edd-1a184e810dc2
+2025-08-20 10:59:38,907 - main - INFO - Admin login successful: admin
+2025-08-20 11:01:37,017 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 11:01:37,136 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 11:08:06,584 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 11:08:06,715 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 11:09:17,733 - main - INFO - Admin login successful: admin
+2025-08-20 11:10:18,508 - main - INFO - Admin login successful: admin

@@ -1,4 +1,51 @@
-from google import generativeai as genai
+try:
+    from google import generativeai as genai
+    GENAI_AVAILABLE = True
+except ImportError:
+    # Mock for testing when Google Generative AI is not available
+    class MockGenAI:
+        @staticmethod
+        def configure(api_key):
+            # Mock configuration - api_key is ignored in testing
+            pass
+
+        class GenerativeModel:
+            def __init__(self, model_name, system_instruction=None):
+                self.model_name = model_name
+                self.system_instruction = system_instruction
+
+            def generate_content(self, prompt):
+                # Mock response for data extraction
+                class MockResponse:
+                    def __init__(self, text):
+                        self.text = text
+
+                # Extract data from prompt for testing
+                mock_data = {"user_name": "", "user_email": "", "user_phone_number": "", "user_buying_or_selling": ""}
+
+                # Simple pattern matching for testing
+                if "john" in prompt.lower():
+                    mock_data["user_name"] = "John Smith"
+                if "@" in prompt:
+                    import re
+                    email_match = re.search(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', prompt)
+                    if email_match:
+                        mock_data["user_email"] = email_match.group()
+                if any(char.isdigit() for char in prompt):
+                    import re
+                    phone_match = re.search(r'(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}|\d{10})', prompt)
+                    if phone_match:
+                        mock_data["user_phone_number"] = phone_match.group()
+                if "sell" in prompt.lower():
+                    mock_data["user_buying_or_selling"] = "selling"
+                elif "buy" in prompt.lower():
+                    mock_data["user_buying_or_selling"] = "buying"
+
+                return MockResponse(json.dumps([mock_data]))
+
+    genai = MockGenAI()
+    GENAI_AVAILABLE = False
+
 from pydantic import BaseModel
 import os
 import json

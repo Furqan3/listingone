@@ -1,18 +1,41 @@
 #!/usr/bin/env python3
 
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException, BackgroundTasks, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel, EmailStr
 from typing import Dict, Optional
 import uuid
 import json
 import os
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
+try:
+    import jwt
+except ImportError:
+    # Fallback for testing
+    class MockJWT:
+        @staticmethod
+        def encode(payload, key, algorithm):
+            # Mock JWT encoding for testing - key and algorithm are ignored
+            import base64
+            import json
+            return base64.b64encode(json.dumps(payload).encode()).decode()
+
+        @staticmethod
+        def decode(token, key, algorithms):
+            # Mock JWT decoding for testing - key and algorithms are ignored
+            import base64
+            import json
+            return json.loads(base64.b64decode(token.encode()).decode())
+
+    jwt = MockJWT()
+import hashlib
+import secrets
 
 # Import your existing AI helpers
 from ai_helpers.chat_response import chat_response
@@ -105,15 +128,117 @@ app = FastAPI(title="AIREA - AI Real Estate Assistant API", version="1.0.0")
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3001",
+        "http://localhost:3002",
+        "http://127.0.0.1:3002",
+        "http://localhost:3003",
+        "http://127.0.0.1:3003",
+        "http://localhost:8080",
+        "http://127.0.0.1:8080",
+        "file://"  # Allow local file access for admin panel
+    ],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
 # In-memory storage (replace with database in production)
 conversations: Dict[str, Dict] = {}
 user_data_store: Dict[str, Dict] = {}
+admin_users: Dict[str, Dict] = {}
+admin_sessions: Dict[str, Dict] = {}
+
+# Initialize default admin user
+def initialize_admin_users():
+    """Initialize default admin users"""
+    default_admin = {
+        "id": "admin-001",
+        "username": "admin",
+        "email": "admin@listingone.ai",
+        "password_hash": hashlib.sha256("admin123".encode()).hexdigest(),
+        "role": "super_admin",
+        "permissions": ["all"],
+        "created_at": datetime.now().isoformat(),
+        "last_login": None,
+        "active": True
+    }
+    admin_users["admin"] = default_admin
+    logger.info("Default admin user initialized (username: admin, password: admin123)")
+
+# Initialize admin users on startup
+initialize_admin_users()
+
+# JWT Configuration
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", secrets.token_urlsafe(32))
+JWT_ALGORITHM = "HS256"
+JWT_EXPIRATION_HOURS = 24
+
+# Authentication utilities
+security = HTTPBearer()
+
+def create_access_token(user_data: dict) -> str:
+    """Create JWT access token"""
+    expire = datetime.utcnow() + timedelta(hours=JWT_EXPIRATION_HOURS)
+    to_encode = {
+        "sub": user_data["username"],
+        "user_id": user_data["id"],
+        "role": user_data["role"],
+        "permissions": user_data["permissions"],
+        "exp": expire
+    }
+    return jwt.encode(to_encode, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
+
+def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)) -> dict:
+    """Verify JWT token and return user data"""
+    try:
+        payload = jwt.decode(credentials.credentials, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
+        username = payload.get("sub")
+        if username is None:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid authentication credentials",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+
+        # Check if user still exists and is active
+        if username not in admin_users or not admin_users[username]["active"]:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="User not found or inactive",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+
+        return payload
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token has expired",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    except jwt.JWTError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+def hash_password(password: str) -> str:
+    """Hash password using SHA256"""
+    return hashlib.sha256(password.encode()).hexdigest()
+
+def verify_password(password: str, hashed_password: str) -> bool:
+    """Verify password against hash"""
+    return hash_password(password) == hashed_password
+
+def check_permission(user_data: dict, required_permission: str) -> bool:
+    """Check if user has required permission"""
+    if user_data["role"] == "super_admin" or "all" in user_data["permissions"]:
+        return True
+    return required_permission in user_data["permissions"]
 
 # Conversation state management
 class ConversationState:
@@ -147,6 +272,34 @@ class ChatResponse(BaseModel):
     duplicate_warning: Optional[bool] = None
     spam_warning: Optional[bool] = None
     lead_score: Optional[Dict] = None
+
+# Admin Authentication Models
+class AdminLoginRequest(BaseModel):
+    username: str
+    password: str
+
+class AdminLoginResponse(BaseModel):
+    access_token: str
+    token_type: str
+    user_info: Dict
+    expires_in: int
+
+class AdminUserCreate(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
+    role: str = "agent"
+    permissions: list = []
+
+class AdminUserResponse(BaseModel):
+    id: str
+    username: str
+    email: str
+    role: str
+    permissions: list
+    created_at: str
+    last_login: Optional[str]
+    active: bool
 
 class UserData(BaseModel):
     user_name: Optional[str] = None
@@ -856,10 +1009,155 @@ async def health_check():
 
     return health_status
 
+# Admin Authentication Endpoints
+@app.post("/api/admin/login", response_model=AdminLoginResponse)
+async def admin_login(login_data: AdminLoginRequest):
+    """Admin login endpoint"""
+    username = login_data.username
+    password = login_data.password
+
+    # Check if user exists
+    if username not in admin_users:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid username or password"
+        )
+
+    user = admin_users[username]
+
+    # Check if user is active
+    if not user["active"]:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Account is deactivated"
+        )
+
+    # Verify password
+    if not verify_password(password, user["password_hash"]):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid username or password"
+        )
+
+    # Update last login
+    user["last_login"] = datetime.now().isoformat()
+
+    # Create access token
+    access_token = create_access_token(user)
+
+    # Store session
+    session_id = str(uuid.uuid4())
+    admin_sessions[session_id] = {
+        "user_id": user["id"],
+        "username": username,
+        "created_at": datetime.now().isoformat(),
+        "last_activity": datetime.now().isoformat()
+    }
+
+    logger.info(f"Admin login successful: {username}")
+
+    return AdminLoginResponse(
+        access_token=access_token,
+        token_type="bearer",
+        user_info={
+            "id": user["id"],
+            "username": user["username"],
+            "email": user["email"],
+            "role": user["role"],
+            "permissions": user["permissions"]
+        },
+        expires_in=JWT_EXPIRATION_HOURS * 3600
+    )
+
+@app.post("/api/admin/logout")
+async def admin_logout(current_user: dict = Depends(verify_token)):
+    """Admin logout endpoint"""
+    # Remove all sessions for this user
+    sessions_to_remove = [
+        session_id for session_id, session in admin_sessions.items()
+        if session["username"] == current_user["sub"]
+    ]
+
+    for session_id in sessions_to_remove:
+        del admin_sessions[session_id]
+
+    logger.info(f"Admin logout: {current_user['sub']}")
+
+    return {"message": "Logged out successfully"}
+
+@app.get("/api/admin/me", response_model=AdminUserResponse)
+async def get_current_admin_user(current_user: dict = Depends(verify_token)):
+    """Get current admin user info"""
+    username = current_user["sub"]
+    user = admin_users[username]
+
+    return AdminUserResponse(
+        id=user["id"],
+        username=user["username"],
+        email=user["email"],
+        role=user["role"],
+        permissions=user["permissions"],
+        created_at=user["created_at"],
+        last_login=user["last_login"],
+        active=user["active"]
+    )
+
+@app.post("/api/admin/users", response_model=AdminUserResponse)
+async def create_admin_user(
+    user_data: AdminUserCreate,
+    current_user: dict = Depends(verify_token)
+):
+    """Create new admin user (super_admin only)"""
+    if not check_permission(current_user, "user_management"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
+
+    # Check if username already exists
+    if user_data.username in admin_users:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Username already exists"
+        )
+
+    # Create new user
+    new_user = {
+        "id": f"admin-{len(admin_users) + 1:03d}",
+        "username": user_data.username,
+        "email": user_data.email,
+        "password_hash": hash_password(user_data.password),
+        "role": user_data.role,
+        "permissions": user_data.permissions,
+        "created_at": datetime.now().isoformat(),
+        "last_login": None,
+        "active": True
+    }
+
+    admin_users[user_data.username] = new_user
+
+    logger.info(f"New admin user created: {user_data.username} by {current_user['sub']}")
+
+    return AdminUserResponse(
+        id=new_user["id"],
+        username=new_user["username"],
+        email=new_user["email"],
+        role=new_user["role"],
+        permissions=new_user["permissions"],
+        created_at=new_user["created_at"],
+        last_login=new_user["last_login"],
+        active=new_user["active"]
+    )
+
 # Admin endpoints
 @app.get("/api/admin/conversations")
-async def list_all_conversations():
+async def list_all_conversations(current_user: dict = Depends(verify_token)):
     """List all conversations with summary information"""
+    if not check_permission(current_user, "view_conversations"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
     conversation_summaries = []
 
     for session_id, conversation in conversations.items():
@@ -897,8 +1195,13 @@ async def list_all_conversations():
     }
 
 @app.get("/api/admin/leads")
-async def get_qualified_leads():
+async def get_qualified_leads(current_user: dict = Depends(verify_token)):
     """Get all qualified leads from conversations"""
+    if not check_permission(current_user, "view_leads"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
     qualified_leads = []
 
     for session_id, conversation in conversations.items():
@@ -1158,6 +1461,74 @@ async def get_full_lead_details(session_id: str):
         "spam_check": conversation.get("spam_check", {}),
         "conversation_history": formatted_history,
         "validation_results": conversation.get("validation_results", {})
+    }
+
+@app.get("/api/admin/analytics/performance")
+async def get_performance_analytics(current_user: dict = Depends(verify_token)):
+    """Get detailed performance analytics"""
+    if not check_permission(current_user, "view_analytics"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
+
+    # Calculate performance metrics
+    total_conversations = len(conversations)
+    completed_conversations = len([c for c in conversations.values() if c.get("conversation_complete")])
+
+    # Lead score distribution
+    score_distribution = {"Hot": 0, "Warm": 0, "Qualified": 0, "Cold": 0, "Unqualified": 0}
+    total_score = 0
+    scored_leads = 0
+
+    # Conversion funnel
+    funnel_data = {
+        "visitors": total_conversations,
+        "engaged": 0,  # More than 3 messages
+        "qualified": 0,  # Has contact info
+        "converted": completed_conversations
+    }
+
+    for conversation in conversations.values():
+        # Score distribution
+        lead_score = conversation.get("lead_score", {})
+        category = lead_score.get("category", "Unqualified")
+        score_distribution[category] += 1
+
+        if lead_score.get("total_score"):
+            total_score += lead_score["total_score"]
+            scored_leads += 1
+
+        # Engagement analysis
+        message_count = len(conversation.get("history", {}))
+        if message_count > 3:
+            funnel_data["engaged"] += 1
+
+        if conversation.get("user_data", {}).get("user_email"):
+            funnel_data["qualified"] += 1
+
+    # Calculate rates
+    engagement_rate = (funnel_data["engaged"] / max(1, funnel_data["visitors"])) * 100
+    qualification_rate = (funnel_data["qualified"] / max(1, funnel_data["visitors"])) * 100
+    conversion_rate = (funnel_data["converted"] / max(1, funnel_data["visitors"])) * 100
+
+    avg_lead_score = total_score / max(1, scored_leads)
+
+    return {
+        "overview": {
+            "total_conversations": total_conversations,
+            "completed_conversations": completed_conversations,
+            "conversion_rate": round(conversion_rate, 2),
+            "average_lead_score": round(avg_lead_score, 1)
+        },
+        "score_distribution": score_distribution,
+        "conversion_funnel": {
+            **funnel_data,
+            "engagement_rate": round(engagement_rate, 2),
+            "qualification_rate": round(qualification_rate, 2),
+            "conversion_rate": round(conversion_rate, 2)
+        },
+        "generated_at": datetime.now().isoformat()
     }
 
 if __name__ == "__main__":

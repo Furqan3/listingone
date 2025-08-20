@@ -736,7 +736,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onOpenChat }) => {
             className="border-t mt-12 pt-8 text-center"
             style={{ borderColor: "rgba(166, 110, 78, 0.3)", color: "#A66E4E" }}
           >
-            <p>&copy; 2024 AIREA. All rights reserved.</p>
+            <p>&copy; 2025 AIREA. All rights reserved.</p>
           </div>
         </div>
       </footer>
