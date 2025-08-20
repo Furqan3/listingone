@@ -3,6 +3,7 @@
 from fastapi import FastAPI, HTTPException, BackgroundTasks, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, EmailStr
 from typing import Dict, Optional
 import uuid
@@ -14,6 +15,16 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
+import csv
+import io
+from database import mongodb
+from simple_data_extractor import (
+    extract_user_data_simple,
+    merge_user_data,
+    calculate_completion_percentage,
+    is_conversation_complete,
+    get_next_required_field
+)
 try:
     import jwt
 except ImportError:
@@ -125,6 +136,18 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI(title="AIREA - AI Real Estate Assistant API", version="1.0.0")
 
+# Startup and shutdown events
+@app.on_event("startup")
+async def startup_event():
+    """Initialize database connection on startup"""
+    await mongodb.connect()
+    await initialize_admin_users()
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Close database connection on shutdown"""
+    await mongodb.disconnect()
+
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -146,14 +169,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# In-memory storage (replace with database in production)
+# In-memory fallback storage (used when MongoDB is not available)
 conversations: Dict[str, Dict] = {}
 user_data_store: Dict[str, Dict] = {}
 admin_users: Dict[str, Dict] = {}
 admin_sessions: Dict[str, Dict] = {}
 
 # Initialize default admin user
-def initialize_admin_users():
+async def initialize_admin_users():
     """Initialize default admin users"""
     default_admin = {
         "id": "admin-001",
@@ -166,7 +189,14 @@ def initialize_admin_users():
         "last_login": None,
         "active": True
     }
-    admin_users["admin"] = default_admin
+
+    # Try to save to MongoDB first, fallback to in-memory
+    if mongodb.connected:
+        existing_admin = await mongodb.get_admin_user("admin")
+        if not existing_admin:
+            await mongodb.save_admin_user("admin", default_admin)
+    else:
+        admin_users["admin"] = default_admin
     logger.info("Default admin user initialized (username: admin, password: admin123)")
 
 # Initialize admin users on startup
@@ -192,7 +222,7 @@ def create_access_token(user_data: dict) -> str:
     }
     return jwt.encode(to_encode, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
 
-def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)) -> dict:
+async def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)) -> dict:
     """Verify JWT token and return user data"""
     try:
         payload = jwt.decode(credentials.credentials, JWT_SECRET_KEY, algorithms=[JWT_ALGORITHM])
@@ -204,8 +234,14 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)) 
                 headers={"WWW-Authenticate": "Bearer"},
             )
 
-        # Check if user still exists and is active
-        if username not in admin_users or not admin_users[username]["active"]:
+        # Check if user still exists and is active (try MongoDB first, fallback to in-memory)
+        user = None
+        if mongodb.connected:
+            user = await mongodb.get_admin_user(username)
+        else:
+            user = admin_users.get(username)
+
+        if not user or not user["active"]:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="User not found or inactive",
@@ -219,7 +255,7 @@ def verify_token(credentials: HTTPAuthorizationCredentials = Depends(security)) 
             detail="Token has expired",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    except jwt.JWTError:
+    except jwt.PyJWTError:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid authentication credentials",
@@ -547,6 +583,157 @@ This is an automated message. Please do not reply directly to this email.
             logger.error(f"Unexpected error sending notification email: {e}")
             return False
 
+    def send_follow_up_email(self, user_email: str, user_name: str, lead_type: str, follow_up_type: str = "general"):
+        """Send follow-up email to existing lead"""
+        try:
+            if not self.email_configured:
+                logger.warning("Email credentials not configured, skipping follow-up email")
+                return False
+
+            # Validate input parameters
+            if not user_email or not user_name:
+                logger.error(f"Invalid email parameters: email={user_email}, name={user_name}")
+                return False
+
+            msg = MIMEMultipart('alternative')
+            msg['From'] = self.email
+            msg['To'] = user_email
+
+            if follow_up_type == "property_evaluation":
+                msg['Subject'] = "Schedule Your Property Evaluation - ListingOne.ai"
+                text_body = f"""
+Dear {user_name},
+
+We hope this email finds you well!
+
+Our team is ready to provide you with a comprehensive property evaluation and market analysis. This complimentary service includes:
+
+• Comparative Market Analysis (CMA)
+• Property walkthrough and assessment
+• Pricing strategy recommendations
+• Marketing plan discussion
+
+Please reply to this email or call us at (555) 123-4567 to schedule your evaluation at your convenience.
+
+Best regards,
+The ListingOne.ai Team
+                """
+                html_body = f"""
+                <html>
+                  <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                      <h2 style="color: #2563eb;">Schedule Your Property Evaluation</h2>
+                      <p>Dear {user_name},</p>
+                      <p>We hope this email finds you well!</p>
+                      <p>Our team is ready to provide you with a comprehensive property evaluation and market analysis. This complimentary service includes:</p>
+                      <ul>
+                        <li>Comparative Market Analysis (CMA)</li>
+                        <li>Property walkthrough and assessment</li>
+                        <li>Pricing strategy recommendations</li>
+                        <li>Marketing plan discussion</li>
+                      </ul>
+                      <p>Please reply to this email or call us at <strong>(555) 123-4567</strong> to schedule your evaluation at your convenience.</p>
+                      <p>Best regards,<br><strong>The ListingOne.ai Team</strong></p>
+                    </div>
+                  </body>
+                </html>
+                """
+            elif follow_up_type == "buyer_consultation":
+                msg['Subject'] = "Ready to Find Your Dream Home? - ListingOne.ai"
+                text_body = f"""
+Dear {user_name},
+
+Thank you for your interest in buying a property with us!
+
+We're excited to help you find your perfect home. Our next step is to schedule a buyer consultation where we'll:
+
+• Understand your specific needs and preferences
+• Discuss your budget and financing options
+• Show you available properties that match your criteria
+• Explain our buying process and timeline
+
+Please reply to this email or call us at (555) 123-4567 to schedule your consultation.
+
+Best regards,
+The ListingOne.ai Team
+                """
+                html_body = f"""
+                <html>
+                  <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                      <h2 style="color: #2563eb;">Ready to Find Your Dream Home?</h2>
+                      <p>Dear {user_name},</p>
+                      <p>Thank you for your interest in buying a property with us!</p>
+                      <p>We're excited to help you find your perfect home. Our next step is to schedule a buyer consultation where we'll:</p>
+                      <ul>
+                        <li>Understand your specific needs and preferences</li>
+                        <li>Discuss your budget and financing options</li>
+                        <li>Show you available properties that match your criteria</li>
+                        <li>Explain our buying process and timeline</li>
+                      </ul>
+                      <p>Please reply to this email or call us at <strong>(555) 123-4567</strong> to schedule your consultation.</p>
+                      <p>Best regards,<br><strong>The ListingOne.ai Team</strong></p>
+                    </div>
+                  </body>
+                </html>
+                """
+            else:  # general follow-up
+                msg['Subject'] = "Following Up on Your Real Estate Inquiry - ListingOne.ai"
+                text_body = f"""
+Dear {user_name},
+
+We wanted to follow up on your recent inquiry with ListingOne.ai.
+
+Our team is here to assist you with all your real estate needs. Whether you're looking to buy or sell, we have the expertise and resources to help you achieve your goals.
+
+If you have any questions or would like to discuss your real estate plans, please don't hesitate to reach out to us.
+
+Best regards,
+The ListingOne.ai Team
+                """
+                html_body = f"""
+                <html>
+                  <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                      <h2 style="color: #2563eb;">Following Up on Your Real Estate Inquiry</h2>
+                      <p>Dear {user_name},</p>
+                      <p>We wanted to follow up on your recent inquiry with ListingOne.ai.</p>
+                      <p>Our team is here to assist you with all your real estate needs. Whether you're looking to buy or sell, we have the expertise and resources to help you achieve your goals.</p>
+                      <p>If you have any questions or would like to discuss your real estate plans, please don't hesitate to reach out to us.</p>
+                      <p>Best regards,<br><strong>The ListingOne.ai Team</strong></p>
+                    </div>
+                  </body>
+                </html>
+                """
+
+            # Attach both versions
+            msg.attach(MIMEText(text_body, 'plain'))
+            msg.attach(MIMEText(html_body, 'html'))
+
+            # Send email
+            server = None
+            try:
+                server = smtplib.SMTP(self.smtp_server, self.smtp_port)
+                server.starttls()
+                server.login(self.email, self.password)
+                text = msg.as_string()
+                server.sendmail(self.email, user_email, text)
+                logger.info(f"Follow-up email ({follow_up_type}) sent successfully to {user_email}")
+                return True
+            except Exception as e:
+                logger.error(f"Error sending follow-up email: {e}")
+                return False
+            finally:
+                if server:
+                    try:
+                        server.quit()
+                    except:
+                        pass
+
+        except Exception as e:
+            logger.error(f"Unexpected error sending follow-up email to {user_email}: {e}")
+            return False
+
 email_service = EmailService()
 
 # Conversation management functions
@@ -643,8 +830,15 @@ async def chat_endpoint(chat_message: ChatMessage, background_tasks: BackgroundT
         session_id = chat_message.session_id or str(uuid.uuid4())
 
         # Initialize conversation if new session
-        if session_id not in conversations:
-            conversations[session_id] = {
+        conversation = None
+        if mongodb.connected:
+            conversation = await mongodb.get_conversation(session_id)
+        else:
+            conversation = conversations.get(session_id)
+
+        if not conversation:
+            conversation = {
+                "session_id": session_id,
                 "history": {},
                 "created_at": datetime.now().isoformat(),
                 "user_data": {},
@@ -671,98 +865,95 @@ async def chat_endpoint(chat_message: ChatMessage, background_tasks: BackgroundT
             }
             logger.info(f"New conversation started: {session_id}")
 
-        conversation = conversations[session_id]
+            # Save the new conversation
+            if mongodb.connected:
+                await mongodb.save_conversation(session_id, conversation)
+            else:
+                conversations[session_id] = conversation
 
         # Add conversation context for better AI responses
         conversation_context = get_conversation_context(conversation)
 
+        # Store detailed message history for admin view (before AI response)
+        current_time = datetime.now().isoformat()
+        if "detailed_history" not in conversation:
+            conversation["detailed_history"] = []
+
+        conversation["detailed_history"].append({
+            "message": chat_message.message,
+            "role": "user",
+            "timestamp": current_time
+        })
+
         # Get AI response using your existing function with context
         ai_response = chat_response(conversation["history"], chat_message.message, conversation_context)
         logger.info(f"AI response generated for session {session_id}")
-        
-        # Check if we should extract user data
+
+        # Store AI response in detailed history
+        ai_response_time = datetime.now().isoformat()
+        conversation["detailed_history"].append({
+            "message": ai_response,
+            "role": "assistant",
+            "timestamp": ai_response_time
+        })
+
+        # Extract user data from every message using simple, reliable extraction
         extracted_data = None
         conversation_complete = False
-        
-        if len(conversation["history"]) > 6:  # After some conversation
-            try:
-                structured_data = structure_response(conversation["history"])
-                if structured_data:
-                    parsed_data = json.loads(structured_data)
-                    # structure_response returns a list, but we need the first item as a dict
-                    if parsed_data and len(parsed_data) > 0:
-                        extracted_data = parsed_data[0]  # Get the first (and only) user object
-                        conversation["user_data"] = extracted_data
 
-                        # Update conversation progress
-                        update_conversation_progress(conversation, extracted_data)
+        # Always try to extract data, even from early messages
+        try:
+            # Use simple data extraction
+            new_data = extract_user_data_simple(conversation["history"])
 
-                        # Validate the data quality
-                        validation_results = validate_user_data(extracted_data)
-                        logger.info(f"Data validation for session {session_id}: {validation_results}")
+            if new_data:
+                # Merge with existing user data to preserve information
+                if conversation.get("user_data"):
+                    extracted_data = merge_user_data(conversation["user_data"], new_data)
+                else:
+                    extracted_data = new_data
 
-                        # Check for duplicates and spam
-                        duplicate_check = detect_duplicate_lead(extracted_data, conversations)
-                        spam_check = detect_spam_patterns(extracted_data)
+                # Update conversation with merged data
+                conversation["user_data"] = extracted_data
 
-                        # Calculate lead score
-                        lead_score = calculate_lead_score(extracted_data, conversation)
+                # Update conversation progress using simple calculation
+                completion_rate = calculate_completion_percentage(extracted_data)
+                conversation["progress"]["completion_rate"] = completion_rate
+                conversation["progress"]["next_required_field"] = get_next_required_field(extracted_data)
 
-                        # Analyze conversation intelligence
-                        sentiment_analysis = analyze_conversation_sentiment(conversation["history"])
-                        intent_analysis = detect_conversation_intent(conversation["history"], extracted_data)
-                        topic_analysis = identify_conversation_topics(conversation["history"])
+                # Check if conversation is complete
+                conversation_complete = is_conversation_complete(extracted_data)
+                conversation["conversation_complete"] = conversation_complete
 
-                        # Log potential issues and lead quality
-                        if duplicate_check["is_duplicate"]:
-                            logger.warning(f"Potential duplicate lead detected for session {session_id}: {duplicate_check}")
-                        if spam_check["is_spam"]:
-                            logger.warning(f"Potential spam detected for session {session_id}: {spam_check}")
+                # Log the extracted data
+                logger.info(f"Extracted data for session {session_id}: {extracted_data}")
+                logger.info(f"Completion rate: {completion_rate}%")
+                logger.info(f"Conversation complete: {conversation_complete}")
 
-                        logger.info(f"Lead score for session {session_id}: {lead_score['total_score']} ({lead_score['category']})")
-                        logger.info(f"Conversation sentiment: {sentiment_analysis['sentiment']} (engagement: {sentiment_analysis['engagement']})")
-                        logger.info(f"Primary intent: {intent_analysis['primary_intent']}")
-
-                        # Update conversation quality metrics
-                        conversation["conversation_quality"]["data_quality_score"] = validation_results["quality_score"]
-                        conversation["duplicate_check"] = duplicate_check
-                        conversation["spam_check"] = spam_check
-                        conversation["lead_score"] = lead_score
-                        conversation["conversation_intelligence"] = {
-                            "sentiment": sentiment_analysis,
-                            "intent": intent_analysis,
-                            "topics": topic_analysis
-                        }
-
-                        # Check if conversation is complete based on validation and progress
-                        progress_complete = conversation["progress"]["completion_rate"] >= 100
-                        validation_passed = validation_results["is_valid"] and validation_results["completeness_score"] >= 75
-
-                        if progress_complete and validation_passed:
-                            conversation_complete = True
-                            conversation["conversation_complete"] = True
-                            conversation["validation_results"] = validation_results
-
-                            # Send emails in background
-                            background_tasks.add_task(
-                                email_service.send_welcome_email,
-                                extracted_data.get("user_email"),
-                                extracted_data.get("user_name"),
-                                extracted_data.get("user_buying_or_selling")
-                            )
-                            background_tasks.add_task(
-                                email_service.send_notification_email,
-                                extracted_data
-                            )
-                    else:
-                        # If no valid data, set extracted_data to None
-                        extracted_data = None
-            except Exception as e:
-                logger.error(f"Error extracting user data for session {session_id}: {e}")
+                # If conversation is complete, send emails
+                if conversation_complete:
+                    background_tasks.add_task(
+                        email_service.send_welcome_email,
+                        extracted_data.get("user_email"),
+                        extracted_data.get("user_name"),
+                        extracted_data.get("user_buying_or_selling")
+                    )
+                    background_tasks.add_task(
+                        email_service.send_notification_email,
+                        extracted_data
+                    )
+            else:
+                # If no valid data, set extracted_data to None
                 extracted_data = None
+        except Exception as e:
+            logger.error(f"Error extracting user data for session {session_id}: {e}")
+            extracted_data = None
 
         # Store the conversation
-        conversations[session_id] = conversation
+        if mongodb.connected:
+            await mongodb.save_conversation(session_id, conversation)
+        else:
+            conversations[session_id] = conversation
 
         # Get warning flags and lead score
         duplicate_warning = conversation.get("duplicate_check", {}).get("is_duplicate", False)
@@ -793,7 +984,7 @@ async def contact_form(contact_data: ContactForm, background_tasks: BackgroundTa
     try:
         # Store contact data
         contact_id = str(uuid.uuid4())
-        user_data_store[contact_id] = {
+        contact_form_data = {
             "id": contact_id,
             "name": contact_data.name,
             "email": contact_data.email,
@@ -803,6 +994,12 @@ async def contact_form(contact_data: ContactForm, background_tasks: BackgroundTa
             "created_at": datetime.now().isoformat(),
             "source": "contact_form"
         }
+
+        # Save to MongoDB or fallback to in-memory
+        if mongodb.connected:
+            await mongodb.save_contact_form(contact_form_data)
+        else:
+            user_data_store[contact_id] = contact_form_data
         
         # Send notification email in background
         user_data_for_email = {
@@ -1016,14 +1213,18 @@ async def admin_login(login_data: AdminLoginRequest):
     username = login_data.username
     password = login_data.password
 
-    # Check if user exists
-    if username not in admin_users:
+    # Check if user exists (try MongoDB first, fallback to in-memory)
+    user = None
+    if mongodb.connected:
+        user = await mongodb.get_admin_user(username)
+    else:
+        user = admin_users.get(username)
+
+    if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid username or password"
         )
-
-    user = admin_users[username]
 
     # Check if user is active
     if not user["active"]:
@@ -1041,6 +1242,12 @@ async def admin_login(login_data: AdminLoginRequest):
 
     # Update last login
     user["last_login"] = datetime.now().isoformat()
+
+    # Save updated user data
+    if mongodb.connected:
+        await mongodb.save_admin_user(username, user)
+    else:
+        admin_users[username] = user
 
     # Create access token
     access_token = create_access_token(user)
@@ -1149,6 +1356,96 @@ async def create_admin_user(
         active=new_user["active"]
     )
 
+@app.delete("/api/admin/users/{username}")
+async def delete_admin_user(username: str, current_user: dict = Depends(verify_token)):
+    """Delete an admin user"""
+    if not check_permission(current_user, "user_management"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
+
+    # Prevent self-deletion
+    if username == current_user["sub"]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot delete your own account"
+        )
+
+    # Prevent deletion of super admin
+    if username == "admin":
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot delete the super admin account"
+        )
+
+    try:
+        # Delete from MongoDB if available
+        if mongodb.connected:
+            result = await mongodb.delete_admin_user(username)
+            if not result:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail="User not found"
+                )
+        else:
+            # Fallback to in-memory deletion
+            if username not in admin_users:
+                raise HTTPException(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    detail="User not found"
+                )
+            del admin_users[username]
+
+        logger.info(f"Admin user {username} deleted by {current_user['sub']}")
+        return {"message": f"User {username} deleted successfully"}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error deleting user {username}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to delete user")
+
+@app.get("/api/admin/users")
+async def list_admin_users(current_user: dict = Depends(verify_token)):
+    """List all admin users"""
+    if not check_permission(current_user, "view_users"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
+
+    try:
+        users = []
+        if mongodb.connected:
+            users_data = await mongodb.get_all_admin_users()
+            for user in users_data:
+                users.append({
+                    "username": user["username"],
+                    "email": user.get("email", ""),
+                    "role": user["role"],
+                    "active": user["active"],
+                    "created_at": user.get("created_at", ""),
+                    "last_login": user.get("last_login", "")
+                })
+        else:
+            # Fallback to in-memory users
+            for username, user_info in admin_users.items():
+                users.append({
+                    "username": username,
+                    "email": user_info.get("email", ""),
+                    "role": user_info["role"],
+                    "active": user_info["active"],
+                    "created_at": user_info.get("created_at", ""),
+                    "last_login": user_info.get("last_login", "")
+                })
+
+        return {"users": users, "total": len(users)}
+
+    except Exception as e:
+        logger.error(f"Error listing users: {e}")
+        raise HTTPException(status_code=500, detail="Failed to list users")
+
 # Admin endpoints
 @app.get("/api/admin/conversations")
 async def list_all_conversations(current_user: dict = Depends(verify_token)):
@@ -1195,8 +1492,14 @@ async def list_all_conversations(current_user: dict = Depends(verify_token)):
     }
 
 @app.get("/api/admin/leads")
-async def get_qualified_leads(current_user: dict = Depends(verify_token)):
-    """Get all qualified leads from conversations"""
+async def get_qualified_leads(
+    page: int = 1,
+    limit: int = 10,
+    status_filter: str = "all",
+    search: str = "",
+    current_user: dict = Depends(verify_token)
+):
+    """Get leads with pagination, filtering, and search"""
     if not check_permission(current_user, "view_leads"):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
@@ -1204,18 +1507,31 @@ async def get_qualified_leads(current_user: dict = Depends(verify_token)):
         )
     qualified_leads = []
 
-    for session_id, conversation in conversations.items():
-        if conversation.get("conversation_complete") and conversation.get("user_data"):
+    # Get conversations from MongoDB or fallback to in-memory
+    if mongodb.connected:
+        conversations_data = await mongodb.get_qualified_leads()
+    else:
+        conversations_data = [conv for conv in conversations.values() if conv.get("conversation_complete") and conv.get("user_data")]
+
+    for conversation in conversations_data:
+        if conversation.get("user_data"):  # Include all conversations with user data, not just complete ones
             user_data = conversation["user_data"]
             validation_results = conversation.get("validation_results", {})
 
+            # The MongoDB version already includes conversation_history and recommended_actions
+            # For in-memory fallback, we need to add them
             lead = {
-                "session_id": session_id,
+                "session_id": conversation.get("session_id"),
                 "created_at": conversation["created_at"],
                 "user_data": user_data,
                 "quality_score": validation_results.get("quality_score", 0),
                 "completeness_score": validation_results.get("completeness_score", 0),
-                "conversation_quality": conversation["conversation_quality"],
+                "conversation_quality": conversation.get("conversation_quality", {}),
+                "conversation_history": conversation.get("conversation_history", []),
+                "recommended_actions": conversation.get("recommended_actions", []),
+                "conversation_metrics": conversation.get("conversation_metrics", {}),
+                "last_activity": conversation.get("updated_at", conversation.get("created_at")),
+                "conversation_complete": conversation.get("conversation_complete", False),
                 "source": "chat_conversation"
             }
             qualified_leads.append(lead)
@@ -1239,19 +1555,457 @@ async def get_qualified_leads(current_user: dict = Depends(verify_token)):
             }
             qualified_leads.append(lead)
 
+    # Apply search filter
+    if search:
+        search_lower = search.lower()
+        qualified_leads = [
+            lead for lead in qualified_leads
+            if (lead.get("user_data", {}).get("user_name", "").lower().find(search_lower) != -1 or
+                lead.get("user_data", {}).get("user_email", "").lower().find(search_lower) != -1 or
+                lead.get("user_data", {}).get("user_phone_number", "").find(search) != -1)
+        ]
+
+    # Apply status filter
+    if status_filter != "all":
+        if status_filter == "complete":
+            qualified_leads = [lead for lead in qualified_leads if lead.get("conversation_complete", False)]
+        elif status_filter == "incomplete":
+            qualified_leads = [lead for lead in qualified_leads if not lead.get("conversation_complete", False)]
+        elif status_filter == "buying":
+            qualified_leads = [lead for lead in qualified_leads if lead.get("user_data", {}).get("user_buying_or_selling") == "buying"]
+        elif status_filter == "selling":
+            qualified_leads = [lead for lead in qualified_leads if lead.get("user_data", {}).get("user_buying_or_selling") == "selling"]
+
     # Sort by creation date (newest first)
     qualified_leads.sort(key=lambda x: x["created_at"], reverse=True)
 
+    # Apply pagination
+    total_leads = len(qualified_leads)
+    start_index = (page - 1) * limit
+    end_index = start_index + limit
+    paginated_leads = qualified_leads[start_index:end_index]
+
+    # Calculate pagination info
+    total_pages = (total_leads + limit - 1) // limit
+    has_next = page < total_pages
+    has_prev = page > 1
+
     return {
-        "total_leads": len(qualified_leads),
+        "total_leads": total_leads,
         "chat_leads": len([l for l in qualified_leads if l["source"] == "chat_conversation"]),
         "contact_form_leads": len([l for l in qualified_leads if l["source"] == "contact_form"]),
-        "leads": qualified_leads
+        "leads": paginated_leads,
+        "pagination": {
+            "current_page": page,
+            "total_pages": total_pages,
+            "page_size": limit,
+            "has_next": has_next,
+            "has_prev": has_prev,
+            "total_items": total_leads
+        }
     }
+
+@app.get("/api/admin/leads/export")
+async def export_leads(
+    format: str = "csv",
+    status_filter: str = "all",
+    current_user: dict = Depends(verify_token)
+):
+    """Export leads data in CSV or JSON format"""
+    if not check_permission(current_user, "view_leads"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
+
+    try:
+        # Get all leads (without pagination)
+        conversations_data = []
+        if mongodb.connected:
+            conversations_data = await mongodb.get_qualified_leads()
+        else:
+            # Fallback to in-memory conversations
+            for session_id, conversation in conversations.items():
+                if conversation.get("user_data"):
+                    conversations_data.append({
+                        "session_id": session_id,
+                        **conversation
+                    })
+
+        # Apply status filter
+        if status_filter != "all":
+            if status_filter == "complete":
+                conversations_data = [lead for lead in conversations_data if lead.get("conversation_complete", False)]
+            elif status_filter == "incomplete":
+                conversations_data = [lead for lead in conversations_data if not lead.get("conversation_complete", False)]
+            elif status_filter == "buying":
+                conversations_data = [lead for lead in conversations_data if lead.get("user_data", {}).get("user_buying_or_selling") == "buying"]
+            elif status_filter == "selling":
+                conversations_data = [lead for lead in conversations_data if lead.get("user_data", {}).get("user_buying_or_selling") == "selling"]
+
+        if format.lower() == "csv":
+            # Create CSV export
+            output = io.StringIO()
+            writer = csv.writer(output)
+
+            # Write headers
+            headers = [
+                "Session ID", "Name", "Email", "Phone", "Intent", "Property Type",
+                "Timeline", "Budget Range", "Created At", "Status", "Conversation Complete",
+                "Total Messages", "Completion Rate", "Last Activity"
+            ]
+            writer.writerow(headers)
+
+            # Write data rows
+            for lead in conversations_data:
+                user_data = lead.get("user_data", {})
+                metrics = lead.get("conversation_metrics", {})
+
+                row = [
+                    lead.get("session_id", ""),
+                    user_data.get("user_name", ""),
+                    user_data.get("user_email", ""),
+                    user_data.get("user_phone_number", ""),
+                    user_data.get("user_buying_or_selling", ""),
+                    user_data.get("user_property_type", ""),
+                    user_data.get("user_timeline", ""),
+                    user_data.get("user_budget_range", ""),
+                    lead.get("created_at", ""),
+                    lead.get("current_status", "new"),
+                    "Yes" if lead.get("conversation_complete", False) else "No",
+                    metrics.get("total_messages", 0),
+                    f"{metrics.get('completeness_percentage', 0):.1f}%",
+                    lead.get("last_activity", lead.get("updated_at", ""))
+                ]
+                writer.writerow(row)
+
+            output.seek(0)
+
+            filename = f"leads_export_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+
+            return StreamingResponse(
+                io.BytesIO(output.getvalue().encode('utf-8')),
+                media_type="text/csv",
+                headers={"Content-Disposition": f"attachment; filename={filename}"}
+            )
+
+        else:  # JSON format
+            # Prepare JSON export data
+            export_data = {
+                "export_info": {
+                    "exported_at": datetime.now().isoformat(),
+                    "exported_by": current_user.get("username", current_user.get("sub", "unknown")),
+                    "total_leads": len(conversations_data),
+                    "status_filter": status_filter
+                },
+                "leads": []
+            }
+
+            for lead in conversations_data:
+                user_data = lead.get("user_data", {})
+                metrics = lead.get("conversation_metrics", {})
+
+                export_lead = {
+                    "session_id": lead.get("session_id", ""),
+                    "personal_info": {
+                        "name": user_data.get("user_name", ""),
+                        "email": user_data.get("user_email", ""),
+                        "phone": user_data.get("user_phone_number", ""),
+                        "contact_preference": user_data.get("user_contact_preference", "")
+                    },
+                    "real_estate_info": {
+                        "intent": user_data.get("user_buying_or_selling", ""),
+                        "property_type": user_data.get("user_property_type", ""),
+                        "timeline": user_data.get("user_timeline", ""),
+                        "budget_range": user_data.get("user_budget_range", ""),
+                        "target_areas": user_data.get("user_target_areas", ""),
+                        "property_preferences": user_data.get("user_property_preferences", "")
+                    },
+                    "conversation_info": {
+                        "created_at": lead.get("created_at", ""),
+                        "updated_at": lead.get("updated_at", ""),
+                        "status": lead.get("current_status", "new"),
+                        "conversation_complete": lead.get("conversation_complete", False),
+                        "metrics": metrics
+                    },
+                    "recommended_actions": lead.get("recommended_actions", []),
+                    "status_history": lead.get("status_history", []),
+                    "follow_up_history": lead.get("follow_up_history", [])
+                }
+                export_data["leads"].append(export_lead)
+
+            filename = f"leads_export_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+
+            return StreamingResponse(
+                io.BytesIO(json.dumps(export_data, indent=2).encode('utf-8')),
+                media_type="application/json",
+                headers={"Content-Disposition": f"attachment; filename={filename}"}
+            )
+
+    except Exception as e:
+        logger.error(f"Error exporting leads: {e}")
+        raise HTTPException(status_code=500, detail="Failed to export leads")
+
+@app.get("/api/admin/leads/{session_id}")
+async def get_lead_details(session_id: str, current_user: dict = Depends(verify_token)):
+    """Get detailed information for a specific lead including full conversation history"""
+    if not check_permission(current_user, "view_leads"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
+
+    try:
+        # Get conversation from MongoDB or fallback to in-memory
+        conversation = None
+        if mongodb.connected:
+            conversation = await mongodb.get_conversation(session_id)
+        else:
+            conversation = conversations.get(session_id)
+
+        if not conversation:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Lead not found"
+            )
+
+        # Process the conversation data to include all details
+        if mongodb.connected:
+            # MongoDB version already has processed data
+            lead_details = mongodb._process_lead_data(conversation)
+        else:
+            # For in-memory, create the detailed structure
+            conversation_history = []
+            if conversation.get("history"):
+                for message, role in conversation["history"].items():
+                    conversation_history.append({
+                        "message": message,
+                        "role": role,
+                        "timestamp": conversation.get("created_at")
+                    })
+
+            lead_details = {
+                **conversation,
+                "conversation_history": conversation_history,
+                "recommended_actions": [],  # Would need to implement for in-memory
+                "conversation_metrics": {
+                    "total_messages": len(conversation.get("history", {})),
+                    "completeness_percentage": conversation.get("progress", {}).get("completion_rate", 0),
+                    "conversation_complete": conversation.get("conversation_complete", False)
+                }
+            }
+
+        return lead_details
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error getting lead details for {session_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve lead details")
+
+@app.post("/api/admin/leads/{session_id}/actions")
+async def update_lead_actions(
+    session_id: str,
+    action_data: dict,
+    current_user: dict = Depends(verify_token)
+):
+    """Update or add actions for a specific lead"""
+    if not check_permission(current_user, "manage_leads"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
+
+    try:
+        # Get conversation
+        conversation = None
+        if mongodb.connected:
+            conversation = await mongodb.get_conversation(session_id)
+        else:
+            conversation = conversations.get(session_id)
+
+        if not conversation:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Lead not found"
+            )
+
+        # Add the action with timestamp and user info
+        action = {
+            **action_data,
+            "created_by": current_user.get("username", current_user.get("sub", "unknown")),
+            "created_at": datetime.now().isoformat(),
+            "status": "pending"
+        }
+
+        # Add to conversation actions
+        if "admin_actions" not in conversation:
+            conversation["admin_actions"] = []
+        conversation["admin_actions"].append(action)
+
+        # Save updated conversation
+        if mongodb.connected:
+            await mongodb.save_conversation(session_id, conversation)
+        else:
+            conversations[session_id] = conversation
+
+        return {"message": "Action added successfully", "action": action}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error updating lead actions for {session_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to update lead actions")
+
+@app.put("/api/admin/leads/{session_id}/status")
+async def update_lead_status(
+    session_id: str,
+    status_data: dict,
+    current_user: dict = Depends(verify_token)
+):
+    """Update lead status"""
+    if not check_permission(current_user, "manage_leads"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
+
+    try:
+        # Get conversation
+        conversation = None
+        if mongodb.connected:
+            conversation = await mongodb.get_conversation(session_id)
+        else:
+            conversation = conversations.get(session_id)
+
+        if not conversation:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Lead not found"
+            )
+
+        # Update status
+        new_status = status_data.get("status")
+        if new_status not in ["new", "contacted", "qualified", "converted", "closed", "lost"]:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid status"
+            )
+
+        # Add status history
+        if "status_history" not in conversation:
+            conversation["status_history"] = []
+
+        conversation["status_history"].append({
+            "status": new_status,
+            "changed_by": current_user["username"],
+            "changed_at": datetime.now().isoformat(),
+            "notes": status_data.get("notes", "")
+        })
+
+        conversation["current_status"] = new_status
+        conversation["updated_at"] = datetime.now().isoformat()
+
+        # Save updated conversation
+        if mongodb.connected:
+            await mongodb.save_conversation(session_id, conversation)
+        else:
+            conversations[session_id] = conversation
+
+        return {"message": "Status updated successfully", "status": new_status}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error updating lead status for {session_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to update lead status")
+
+@app.post("/api/admin/leads/{session_id}/follow-up")
+async def send_lead_follow_up(
+    session_id: str,
+    follow_up_data: dict,
+    background_tasks: BackgroundTasks,
+    current_user: dict = Depends(verify_token)
+):
+    """Send follow-up email to a lead"""
+    if not check_permission(current_user, "manage_leads"):
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Insufficient permissions"
+        )
+
+    try:
+        # Get conversation
+        conversation = None
+        if mongodb.connected:
+            conversation = await mongodb.get_conversation(session_id)
+        else:
+            conversation = conversations.get(session_id)
+
+        if not conversation:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="Lead not found"
+            )
+
+        user_data = conversation.get("user_data", {})
+        user_email = user_data.get("user_email")
+        user_name = user_data.get("user_name")
+        lead_type = user_data.get("user_buying_or_selling")
+
+        if not user_email or not user_name:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Lead missing required contact information"
+            )
+
+        follow_up_type = follow_up_data.get("type", "general")
+
+        # Send follow-up email in background
+        background_tasks.add_task(
+            email_service.send_follow_up_email,
+            user_email,
+            user_name,
+            lead_type,
+            follow_up_type
+        )
+
+        # Log the follow-up action
+        if "follow_up_history" not in conversation:
+            conversation["follow_up_history"] = []
+
+        conversation["follow_up_history"].append({
+            "type": follow_up_type,
+            "sent_by": current_user["username"],
+            "sent_at": datetime.now().isoformat(),
+            "notes": follow_up_data.get("notes", "")
+        })
+
+        conversation["updated_at"] = datetime.now().isoformat()
+
+        # Save updated conversation
+        if mongodb.connected:
+            await mongodb.save_conversation(session_id, conversation)
+        else:
+            conversations[session_id] = conversation
+
+        return {"message": "Follow-up email sent successfully", "type": follow_up_type}
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error sending follow-up for {session_id}: {e}")
+        raise HTTPException(status_code=500, detail="Failed to send follow-up")
+
 
 @app.get("/api/admin/analytics")
 async def get_analytics():
     """Get conversation and lead analytics"""
+    # Use MongoDB if available, fallback to in-memory
+    if mongodb.connected:
+        return await mongodb.get_analytics_data()
+
+    # Fallback to in-memory analytics
     total_conversations = len(conversations)
     completed_conversations = len([c for c in conversations.values() if c.get("conversation_complete")])
 

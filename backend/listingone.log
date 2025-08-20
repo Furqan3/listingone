@@ -218,3 +218,472 @@ user_data
 2025-08-20 11:08:06,715 - main - INFO - Default admin user initialized (username: admin, password: admin123)
 2025-08-20 11:09:17,733 - main - INFO - Admin login successful: admin
 2025-08-20 11:10:18,508 - main - INFO - Admin login successful: admin
+2025-08-20 11:12:59,919 - __main__ - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 11:13:00,048 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 11:13:27,441 - main - INFO - Chat request received: session_id=None, message_length=12
+2025-08-20 11:13:27,442 - main - INFO - New conversation started: b1794b20-8e50-451c-9555-b742560c6101
+2025-08-20 11:13:29,727 - main - INFO - AI response generated for session b1794b20-8e50-451c-9555-b742560c6101
+2025-08-20 11:13:29,728 - main - INFO - Chat response completed for session b1794b20-8e50-451c-9555-b742560c6101
+2025-08-20 11:13:38,546 - main - INFO - Chat request received: session_id=b1794b20-8e50-451c-9555-b742560c6101, message_length=20
+2025-08-20 11:13:40,346 - main - INFO - AI response generated for session b1794b20-8e50-451c-9555-b742560c6101
+2025-08-20 11:13:40,346 - main - INFO - Chat response completed for session b1794b20-8e50-451c-9555-b742560c6101
+2025-08-20 11:13:45,755 - main - INFO - Chat request received: session_id=b1794b20-8e50-451c-9555-b742560c6101, message_length=13
+2025-08-20 11:13:47,194 - main - INFO - AI response generated for session b1794b20-8e50-451c-9555-b742560c6101
+2025-08-20 11:13:47,195 - main - INFO - Chat response completed for session b1794b20-8e50-451c-9555-b742560c6101
+2025-08-20 11:13:51,379 - main - INFO - Chat request received: session_id=b1794b20-8e50-451c-9555-b742560c6101, message_length=3
+2025-08-20 11:13:54,369 - main - INFO - AI response generated for session b1794b20-8e50-451c-9555-b742560c6101
+2025-08-20 11:13:54,370 - main - INFO - Data validation for session b1794b20-8e50-451c-9555-b742560c6101: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 11:13:54,371 - main - INFO - Lead score for session b1794b20-8e50-451c-9555-b742560c6101: 15.0 (Unqualified)
+2025-08-20 11:13:54,371 - main - INFO - Conversation sentiment: neutral (engagement: medium)
+2025-08-20 11:13:54,372 - main - INFO - Primary intent: general_inquiry
+2025-08-20 11:13:54,372 - main - INFO - Chat response completed for session b1794b20-8e50-451c-9555-b742560c6101
+2025-08-20 11:14:23,373 - main - INFO - Admin login successful: admin
+2025-08-20 11:16:09,400 - main - INFO - Admin login successful: admin
+2025-08-20 11:20:19,349 - main - INFO - Chat request received: session_id=None, message_length=35
+2025-08-20 11:20:19,350 - main - INFO - New conversation started: fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:21,766 - main - INFO - AI response generated for session fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:21,767 - main - INFO - Chat response completed for session fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:22,273 - main - INFO - Chat request received: session_id=fab8976a-5d42-428d-98aa-72857343f817, message_length=17
+2025-08-20 11:20:26,162 - main - INFO - AI response generated for session fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:26,162 - main - INFO - Chat response completed for session fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:26,668 - main - INFO - Chat request received: session_id=fab8976a-5d42-428d-98aa-72857343f817, message_length=21
+2025-08-20 11:20:29,039 - main - INFO - AI response generated for session fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:29,039 - main - INFO - Chat response completed for session fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:29,549 - main - INFO - Chat request received: session_id=fab8976a-5d42-428d-98aa-72857343f817, message_length=32
+2025-08-20 11:20:31,631 - main - INFO - AI response generated for session fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:31,631 - main - INFO - Data validation for session fab8976a-5d42-428d-98aa-72857343f817: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 11:20:31,632 - main - INFO - Lead score for session fab8976a-5d42-428d-98aa-72857343f817: 15.0 (Unqualified)
+2025-08-20 11:20:31,632 - main - INFO - Conversation sentiment: neutral (engagement: medium)
+2025-08-20 11:20:31,632 - main - INFO - Primary intent: general_inquiry
+2025-08-20 11:20:31,632 - main - INFO - Chat response completed for session fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:32,138 - main - INFO - Chat request received: session_id=fab8976a-5d42-428d-98aa-72857343f817, message_length=30
+2025-08-20 11:20:33,939 - main - INFO - AI response generated for session fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:33,940 - main - INFO - Data validation for session fab8976a-5d42-428d-98aa-72857343f817: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 11:20:33,940 - main - INFO - Lead score for session fab8976a-5d42-428d-98aa-72857343f817: 15.0 (Unqualified)
+2025-08-20 11:20:33,941 - main - INFO - Conversation sentiment: neutral (engagement: high)
+2025-08-20 11:20:33,941 - main - INFO - Primary intent: general_inquiry
+2025-08-20 11:20:33,941 - main - INFO - Chat response completed for session fab8976a-5d42-428d-98aa-72857343f817
+2025-08-20 11:20:34,946 - main - INFO - Chat request received: session_id=None, message_length=27
+2025-08-20 11:20:34,947 - main - INFO - New conversation started: 9556c1dc-32ff-49c8-b818-ff35e67da949
+2025-08-20 11:20:37,320 - main - INFO - AI response generated for session 9556c1dc-32ff-49c8-b818-ff35e67da949
+2025-08-20 11:20:37,320 - main - INFO - Chat response completed for session 9556c1dc-32ff-49c8-b818-ff35e67da949
+2025-08-20 11:20:37,827 - main - INFO - Chat request received: session_id=9556c1dc-32ff-49c8-b818-ff35e67da949, message_length=24
+2025-08-20 11:20:40,026 - main - INFO - AI response generated for session 9556c1dc-32ff-49c8-b818-ff35e67da949
+2025-08-20 11:20:40,026 - main - INFO - Chat response completed for session 9556c1dc-32ff-49c8-b818-ff35e67da949
+2025-08-20 11:20:40,536 - main - INFO - Chat request received: session_id=9556c1dc-32ff-49c8-b818-ff35e67da949, message_length=24
+2025-08-20 11:20:41,702 - main - INFO - AI response generated for session 9556c1dc-32ff-49c8-b818-ff35e67da949
+2025-08-20 11:20:41,702 - main - INFO - Chat response completed for session 9556c1dc-32ff-49c8-b818-ff35e67da949
+2025-08-20 11:20:42,710 - main - INFO - Chat request received: session_id=None, message_length=35
+2025-08-20 11:20:42,710 - main - INFO - New conversation started: 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:44,656 - main - INFO - AI response generated for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:44,657 - main - INFO - Chat response completed for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:45,163 - main - INFO - Chat request received: session_id=4501e3ac-309f-4607-b17b-c73d8ba1a299, message_length=22
+2025-08-20 11:20:47,181 - main - INFO - AI response generated for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:47,182 - main - INFO - Chat response completed for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:47,689 - main - INFO - Chat request received: session_id=4501e3ac-309f-4607-b17b-c73d8ba1a299, message_length=21
+2025-08-20 11:20:49,688 - main - INFO - AI response generated for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:49,689 - main - INFO - Chat response completed for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:50,195 - main - INFO - Chat request received: session_id=4501e3ac-309f-4607-b17b-c73d8ba1a299, message_length=32
+2025-08-20 11:20:52,742 - main - INFO - AI response generated for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:52,742 - main - INFO - Data validation for session 4501e3ac-309f-4607-b17b-c73d8ba1a299: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 11:20:52,743 - main - INFO - Lead score for session 4501e3ac-309f-4607-b17b-c73d8ba1a299: 15.0 (Unqualified)
+2025-08-20 11:20:52,743 - main - INFO - Conversation sentiment: positive (engagement: medium)
+2025-08-20 11:20:52,743 - main - INFO - Primary intent: general_inquiry
+2025-08-20 11:20:52,743 - main - INFO - Chat response completed for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:53,249 - main - INFO - Chat request received: session_id=4501e3ac-309f-4607-b17b-c73d8ba1a299, message_length=30
+2025-08-20 11:20:55,040 - main - INFO - AI response generated for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:55,040 - main - INFO - Data validation for session 4501e3ac-309f-4607-b17b-c73d8ba1a299: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 11:20:55,041 - main - INFO - Lead score for session 4501e3ac-309f-4607-b17b-c73d8ba1a299: 15.0 (Unqualified)
+2025-08-20 11:20:55,041 - main - INFO - Conversation sentiment: positive (engagement: high)
+2025-08-20 11:20:55,041 - main - INFO - Primary intent: general_inquiry
+2025-08-20 11:20:55,041 - main - INFO - Chat response completed for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:55,548 - main - INFO - Chat request received: session_id=4501e3ac-309f-4607-b17b-c73d8ba1a299, message_length=35
+2025-08-20 11:20:57,576 - main - INFO - AI response generated for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:57,577 - main - INFO - Data validation for session 4501e3ac-309f-4607-b17b-c73d8ba1a299: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 11:20:57,577 - main - INFO - Lead score for session 4501e3ac-309f-4607-b17b-c73d8ba1a299: 15.0 (Unqualified)
+2025-08-20 11:20:57,577 - main - INFO - Conversation sentiment: positive (engagement: high)
+2025-08-20 11:20:57,578 - main - INFO - Primary intent: general_inquiry
+2025-08-20 11:20:57,578 - main - INFO - Chat response completed for session 4501e3ac-309f-4607-b17b-c73d8ba1a299
+2025-08-20 11:20:58,584 - main - INFO - Chat request received: session_id=None, message_length=35
+2025-08-20 11:20:58,584 - main - INFO - New conversation started: dd4b3cb0-fc84-4ead-b7c0-96909780653f
+2025-08-20 11:20:59,861 - main - INFO - AI response generated for session dd4b3cb0-fc84-4ead-b7c0-96909780653f
+2025-08-20 11:20:59,861 - main - INFO - Chat response completed for session dd4b3cb0-fc84-4ead-b7c0-96909780653f
+2025-08-20 11:21:00,368 - main - INFO - Chat request received: session_id=dd4b3cb0-fc84-4ead-b7c0-96909780653f, message_length=17
+2025-08-20 11:21:00,841 - main - INFO - AI response generated for session dd4b3cb0-fc84-4ead-b7c0-96909780653f
+2025-08-20 11:21:00,841 - main - INFO - Chat response completed for session dd4b3cb0-fc84-4ead-b7c0-96909780653f
+2025-08-20 11:21:01,348 - main - INFO - Chat request received: session_id=dd4b3cb0-fc84-4ead-b7c0-96909780653f, message_length=22
+2025-08-20 11:21:02,616 - main - INFO - AI response generated for session dd4b3cb0-fc84-4ead-b7c0-96909780653f
+2025-08-20 11:21:02,617 - main - INFO - Chat response completed for session dd4b3cb0-fc84-4ead-b7c0-96909780653f
+2025-08-20 11:21:03,624 - main - INFO - Chat request received: session_id=None, message_length=35
+2025-08-20 11:21:03,625 - main - INFO - New conversation started: 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:04,626 - main - INFO - AI response generated for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:04,626 - main - INFO - Chat response completed for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:05,133 - main - INFO - Chat request received: session_id=04f84f88-f7f8-41b0-8b4c-57533a797c49, message_length=19
+2025-08-20 11:21:06,644 - main - INFO - AI response generated for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:06,645 - main - INFO - Chat response completed for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:07,152 - main - INFO - Chat request received: session_id=04f84f88-f7f8-41b0-8b4c-57533a797c49, message_length=22
+2025-08-20 11:21:07,583 - main - INFO - AI response generated for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:07,583 - main - INFO - Chat response completed for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:08,089 - main - INFO - Chat request received: session_id=04f84f88-f7f8-41b0-8b4c-57533a797c49, message_length=33
+2025-08-20 11:21:09,082 - main - INFO - AI response generated for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:09,082 - main - INFO - Chat response completed for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:09,589 - main - INFO - Chat request received: session_id=04f84f88-f7f8-41b0-8b4c-57533a797c49, message_length=30
+2025-08-20 11:21:10,593 - main - INFO - AI response generated for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:10,593 - main - INFO - Chat response completed for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:11,100 - main - INFO - Chat request received: session_id=04f84f88-f7f8-41b0-8b4c-57533a797c49, message_length=35
+2025-08-20 11:21:12,104 - main - INFO - AI response generated for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:12,104 - main - INFO - Data validation for session 04f84f88-f7f8-41b0-8b4c-57533a797c49: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 11:21:12,105 - main - INFO - Lead score for session 04f84f88-f7f8-41b0-8b4c-57533a797c49: 14.0 (Unqualified)
+2025-08-20 11:21:12,105 - main - INFO - Conversation sentiment: positive (engagement: high)
+2025-08-20 11:21:12,105 - main - INFO - Primary intent: general_inquiry
+2025-08-20 11:21:12,105 - main - INFO - Chat response completed for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:12,612 - main - INFO - Chat request received: session_id=04f84f88-f7f8-41b0-8b4c-57533a797c49, message_length=50
+2025-08-20 11:21:13,598 - main - INFO - AI response generated for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:21:13,598 - main - INFO - Data validation for session 04f84f88-f7f8-41b0-8b4c-57533a797c49: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 11:21:13,599 - main - INFO - Lead score for session 04f84f88-f7f8-41b0-8b4c-57533a797c49: 15.0 (Unqualified)
+2025-08-20 11:21:13,599 - main - INFO - Conversation sentiment: positive (engagement: high)
+2025-08-20 11:21:13,599 - main - INFO - Primary intent: general_inquiry
+2025-08-20 11:21:13,599 - main - INFO - Chat response completed for session 04f84f88-f7f8-41b0-8b4c-57533a797c49
+2025-08-20 11:24:16,131 - main - INFO - New admin user created: testuser by admin
+2025-08-20 11:35:39,820 - main - INFO - Admin login successful: admin
+2025-08-20 11:35:39,831 - main - INFO - New admin user created: testuser_1755671739 by admin
+2025-08-20 11:37:07,116 - main - INFO - Admin login successful: admin
+2025-08-20 11:51:18,128 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 11:51:18,190 - database - INFO - Database indexes created successfully
+2025-08-20 11:51:18,207 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 11:51:56,439 - main - INFO - Admin login successful: admin
+2025-08-20 11:53:12,720 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 11:53:12,727 - database - INFO - Database indexes created successfully
+2025-08-20 11:53:12,728 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 11:53:24,690 - main - INFO - Admin login successful: admin
+2025-08-20 11:55:22,759 - main - INFO - Admin login successful: admin
+2025-08-20 11:55:22,808 - main - INFO - New admin user created: testuser_1755672922 by admin
+2025-08-20 11:55:30,108 - main - INFO - Chat request received: session_id=None, message_length=31
+2025-08-20 11:55:30,109 - main - INFO - New conversation started: 18262650-ffbf-48e2-808b-b1d5222c174d
+2025-08-20 11:55:30,110 - main - ERROR - Chat error for session None: '18262650-ffbf-48e2-808b-b1d5222c174d'
+2025-08-20 11:55:31,116 - main - INFO - Chat request received: session_id=None, message_length=38
+2025-08-20 11:55:31,118 - main - INFO - New conversation started: e781460c-b4d2-4aa5-8570-7ab26fcc4180
+2025-08-20 11:55:31,118 - main - ERROR - Chat error for session None: 'e781460c-b4d2-4aa5-8570-7ab26fcc4180'
+2025-08-20 11:55:32,124 - main - INFO - Chat request received: session_id=None, message_length=35
+2025-08-20 11:55:32,125 - main - INFO - New conversation started: 1a782d5f-3069-49a1-a413-d56098991540
+2025-08-20 11:55:32,125 - main - ERROR - Chat error for session None: '1a782d5f-3069-49a1-a413-d56098991540'
+2025-08-20 11:55:33,131 - main - INFO - Chat request received: session_id=None, message_length=38
+2025-08-20 11:55:33,134 - main - INFO - New conversation started: d0f16b92-857d-48d6-8906-a1cd15c74652
+2025-08-20 11:55:33,134 - main - ERROR - Chat error for session None: 'd0f16b92-857d-48d6-8906-a1cd15c74652'
+2025-08-20 11:55:34,139 - main - INFO - Chat request received: session_id=None, message_length=35
+2025-08-20 11:55:34,141 - main - INFO - New conversation started: c89fc808-6e80-4a4a-9dd6-19621bbfdb0f
+2025-08-20 11:55:34,141 - main - ERROR - Chat error for session None: 'c89fc808-6e80-4a4a-9dd6-19621bbfdb0f'
+2025-08-20 11:56:14,310 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 11:56:14,317 - database - INFO - Database indexes created successfully
+2025-08-20 11:56:14,318 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 11:56:22,199 - main - INFO - Chat request received: session_id=None, message_length=6
+2025-08-20 11:56:22,202 - main - INFO - New conversation started: c563e1e0-f789-4004-8728-52fc8cae43f4
+2025-08-20 11:56:22,213 - main - INFO - AI response generated for session c563e1e0-f789-4004-8728-52fc8cae43f4
+2025-08-20 11:56:22,216 - main - INFO - Chat response completed for session c563e1e0-f789-4004-8728-52fc8cae43f4
+2025-08-20 11:56:30,476 - main - INFO - Chat request received: session_id=c563e1e0-f789-4004-8728-52fc8cae43f4, message_length=20
+2025-08-20 11:56:30,482 - main - INFO - AI response generated for session c563e1e0-f789-4004-8728-52fc8cae43f4
+2025-08-20 11:56:30,484 - main - INFO - Chat response completed for session c563e1e0-f789-4004-8728-52fc8cae43f4
+2025-08-20 11:56:38,903 - main - INFO - Chat request received: session_id=None, message_length=36
+2025-08-20 11:56:38,905 - main - INFO - New conversation started: 0db6ee17-810d-4517-b474-49bf50eea28f
+2025-08-20 11:56:38,909 - main - INFO - AI response generated for session 0db6ee17-810d-4517-b474-49bf50eea28f
+2025-08-20 11:56:38,910 - main - INFO - Chat response completed for session 0db6ee17-810d-4517-b474-49bf50eea28f
+2025-08-20 11:56:51,044 - main - INFO - Chat request received: session_id=c563e1e0-f789-4004-8728-52fc8cae43f4, message_length=12
+2025-08-20 11:56:51,050 - main - INFO - AI response generated for session c563e1e0-f789-4004-8728-52fc8cae43f4
+2025-08-20 11:56:51,052 - main - INFO - Chat response completed for session c563e1e0-f789-4004-8728-52fc8cae43f4
+2025-08-20 12:03:56,067 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 12:03:56,074 - database - INFO - Database indexes created successfully
+2025-08-20 12:03:56,075 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 12:04:23,495 - main - INFO - Chat request received: session_id=None, message_length=36
+2025-08-20 12:04:23,496 - main - INFO - New conversation started: d4f002a1-a1f5-441f-85ff-15ad27571cb3
+2025-08-20 12:04:23,502 - main - INFO - AI response generated for session d4f002a1-a1f5-441f-85ff-15ad27571cb3
+2025-08-20 12:04:23,502 - main - INFO - Data validation for session d4f002a1-a1f5-441f-85ff-15ad27571cb3: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 12:04:23,503 - main - INFO - Lead score for session d4f002a1-a1f5-441f-85ff-15ad27571cb3: 4.0 (Unqualified)
+2025-08-20 12:04:23,503 - main - INFO - Conversation sentiment: positive (engagement: medium)
+2025-08-20 12:04:23,503 - main - INFO - Primary intent: general_inquiry
+2025-08-20 12:04:23,505 - main - INFO - Chat response completed for session d4f002a1-a1f5-441f-85ff-15ad27571cb3
+2025-08-20 12:04:31,405 - main - INFO - Chat request received: session_id=d4f002a1-a1f5-441f-85ff-15ad27571cb3, message_length=23
+2025-08-20 12:04:31,411 - main - INFO - AI response generated for session d4f002a1-a1f5-441f-85ff-15ad27571cb3
+2025-08-20 12:04:31,412 - main - INFO - Data validation for session d4f002a1-a1f5-441f-85ff-15ad27571cb3: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 12:04:31,412 - main - INFO - Lead score for session d4f002a1-a1f5-441f-85ff-15ad27571cb3: 6.0 (Unqualified)
+2025-08-20 12:04:31,412 - main - INFO - Conversation sentiment: positive (engagement: medium)
+2025-08-20 12:04:31,413 - main - INFO - Primary intent: general_inquiry
+2025-08-20 12:04:31,414 - main - INFO - Chat response completed for session d4f002a1-a1f5-441f-85ff-15ad27571cb3
+2025-08-20 12:05:11,193 - main - INFO - Chat request received: session_id=d4f002a1-a1f5-441f-85ff-15ad27571cb3, message_length=20
+2025-08-20 12:05:11,203 - main - INFO - AI response generated for session d4f002a1-a1f5-441f-85ff-15ad27571cb3
+2025-08-20 12:05:11,204 - main - INFO - Data validation for session d4f002a1-a1f5-441f-85ff-15ad27571cb3: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 12:05:11,204 - main - INFO - Lead score for session d4f002a1-a1f5-441f-85ff-15ad27571cb3: 10.0 (Unqualified)
+2025-08-20 12:05:11,204 - main - INFO - Conversation sentiment: positive (engagement: medium)
+2025-08-20 12:05:11,205 - main - INFO - Primary intent: general_inquiry
+2025-08-20 12:05:11,207 - main - INFO - Chat response completed for session d4f002a1-a1f5-441f-85ff-15ad27571cb3
+2025-08-20 12:07:06,885 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 12:07:06,893 - database - INFO - Database indexes created successfully
+2025-08-20 12:07:06,895 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 12:07:30,592 - main - INFO - Chat request received: session_id=None, message_length=27
+2025-08-20 12:07:30,593 - main - INFO - New conversation started: 2d73838a-963b-4354-8144-ffc9f98b31a9
+2025-08-20 12:07:30,597 - main - INFO - AI response generated for session 2d73838a-963b-4354-8144-ffc9f98b31a9
+2025-08-20 12:07:30,598 - main - INFO - Extracted data for session 2d73838a-963b-4354-8144-ffc9f98b31a9: {'user_name': 'Furqan Ahmad', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:07:30,598 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:07:30,598 - main - INFO - Conversation complete: False
+2025-08-20 12:07:30,600 - main - INFO - Chat response completed for session 2d73838a-963b-4354-8144-ffc9f98b31a9
+2025-08-20 12:07:40,723 - main - INFO - Chat request received: session_id=2d73838a-963b-4354-8144-ffc9f98b31a9, message_length=20
+2025-08-20 12:07:40,728 - main - INFO - AI response generated for session 2d73838a-963b-4354-8144-ffc9f98b31a9
+2025-08-20 12:07:40,728 - main - INFO - Extracted data for session 2d73838a-963b-4354-8144-ffc9f98b31a9: {'user_name': 'Furqan Ahmad', 'user_phone_number': '', 'user_email': 'fahmad.ktk@gmail.com', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:07:40,728 - main - INFO - Completion rate: 40.0%
+2025-08-20 12:07:40,728 - main - INFO - Conversation complete: False
+2025-08-20 12:07:40,730 - main - INFO - Chat response completed for session 2d73838a-963b-4354-8144-ffc9f98b31a9
+2025-08-20 12:07:50,195 - main - INFO - Chat request received: session_id=2d73838a-963b-4354-8144-ffc9f98b31a9, message_length=47
+2025-08-20 12:07:50,199 - main - INFO - AI response generated for session 2d73838a-963b-4354-8144-ffc9f98b31a9
+2025-08-20 12:07:50,200 - main - INFO - Extracted data for session 2d73838a-963b-4354-8144-ffc9f98b31a9: {'user_name': 'Furqan Ahmad', 'user_phone_number': '555-123-4567', 'user_email': 'fahmad.ktk@gmail.com', 'user_contact_preference': '', 'user_buying_or_selling': 'buying', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:07:50,200 - main - INFO - Completion rate: 86.66666666666667%
+2025-08-20 12:07:50,200 - main - INFO - Conversation complete: True
+2025-08-20 12:07:50,202 - main - INFO - Chat response completed for session 2d73838a-963b-4354-8144-ffc9f98b31a9
+2025-08-20 12:07:53,044 - main - INFO - Welcome email sent successfully to fahmad.ktk@gmail.com
+2025-08-20 12:07:55,698 - main - INFO - Notification email sent successfully for lead: Furqan Ahmad
+2025-08-20 12:08:23,128 - main - INFO - Admin login successful: admin
+2025-08-20 12:09:52,683 - main - INFO - Admin login successful: admin
+2025-08-20 12:14:17,819 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 12:14:17,826 - database - INFO - Database indexes created successfully
+2025-08-20 12:14:17,828 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 12:14:43,241 - main - INFO - Chat request received: session_id=None, message_length=36
+2025-08-20 12:14:43,243 - main - INFO - New conversation started: 1f4c5b84-4047-4bf9-99c8-771c838233e6
+2025-08-20 12:14:43,246 - main - INFO - AI response generated for session 1f4c5b84-4047-4bf9-99c8-771c838233e6
+2025-08-20 12:14:43,248 - main - INFO - Extracted data for session 1f4c5b84-4047-4bf9-99c8-771c838233e6: {'user_name': 'Looking To Sell My House', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': 'selling', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:14:43,248 - main - INFO - Completion rate: 46.666666666666664%
+2025-08-20 12:14:43,248 - main - INFO - Conversation complete: False
+2025-08-20 12:14:43,251 - main - INFO - Chat response completed for session 1f4c5b84-4047-4bf9-99c8-771c838233e6
+2025-08-20 12:14:50,127 - main - INFO - Chat request received: session_id=1f4c5b84-4047-4bf9-99c8-771c838233e6, message_length=64
+2025-08-20 12:14:50,131 - main - INFO - AI response generated for session 1f4c5b84-4047-4bf9-99c8-771c838233e6
+2025-08-20 12:14:50,131 - main - INFO - Extracted data for session 1f4c5b84-4047-4bf9-99c8-771c838233e6: {'user_name': 'Looking To Sell My House', 'user_phone_number': '', 'user_email': 'sarah.johnson@email.com', 'user_contact_preference': '', 'user_buying_or_selling': 'selling', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:14:50,131 - main - INFO - Completion rate: 66.66666666666667%
+2025-08-20 12:14:50,131 - main - INFO - Conversation complete: False
+2025-08-20 12:14:50,133 - main - INFO - Chat response completed for session 1f4c5b84-4047-4bf9-99c8-771c838233e6
+2025-08-20 12:14:54,903 - main - INFO - Admin login successful: admin
+2025-08-20 12:14:57,696 - main - INFO - Chat request received: session_id=1f4c5b84-4047-4bf9-99c8-771c838233e6, message_length=31
+2025-08-20 12:14:57,703 - main - INFO - AI response generated for session 1f4c5b84-4047-4bf9-99c8-771c838233e6
+2025-08-20 12:14:57,703 - main - INFO - Extracted data for session 1f4c5b84-4047-4bf9-99c8-771c838233e6: {'user_name': 'Looking To Sell My House', 'user_phone_number': '555-987-6543', 'user_email': 'sarah.johnson@email.com', 'user_contact_preference': '', 'user_buying_or_selling': 'selling', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:14:57,704 - main - INFO - Completion rate: 86.66666666666667%
+2025-08-20 12:14:57,704 - main - INFO - Conversation complete: True
+2025-08-20 12:14:57,706 - main - INFO - Chat response completed for session 1f4c5b84-4047-4bf9-99c8-771c838233e6
+2025-08-20 12:15:00,262 - main - INFO - Welcome email sent successfully to sarah.johnson@email.com
+2025-08-20 12:15:02,891 - main - INFO - Notification email sent successfully for lead: Looking To Sell My House
+2025-08-20 12:15:04,578 - main - INFO - Admin login successful: admin
+2025-08-20 12:19:54,727 - main - INFO - Chat request received: session_id=None, message_length=41
+2025-08-20 12:19:54,729 - main - INFO - New conversation started: 92bfa748-d294-41b2-967b-cb5401cc600c
+2025-08-20 12:19:54,735 - main - INFO - AI response generated for session 92bfa748-d294-41b2-967b-cb5401cc600c
+2025-08-20 12:19:54,735 - main - INFO - Extracted data for session 92bfa748-d294-41b2-967b-cb5401cc600c: {'user_name': 'Interested In Selling My Property', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': 'selling', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:19:54,736 - main - INFO - Completion rate: 40.0%
+2025-08-20 12:19:54,736 - main - INFO - Conversation complete: False
+2025-08-20 12:19:54,738 - main - INFO - Chat response completed for session 92bfa748-d294-41b2-967b-cb5401cc600c
+2025-08-20 12:19:54,743 - main - INFO - Chat request received: session_id=92bfa748-d294-41b2-967b-cb5401cc600c, message_length=21
+2025-08-20 12:19:54,748 - main - INFO - AI response generated for session 92bfa748-d294-41b2-967b-cb5401cc600c
+2025-08-20 12:19:54,749 - main - INFO - Extracted data for session 92bfa748-d294-41b2-967b-cb5401cc600c: {'user_name': 'Interested In Selling My Property', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': 'selling', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:19:54,749 - main - INFO - Completion rate: 40.0%
+2025-08-20 12:19:54,749 - main - INFO - Conversation complete: False
+2025-08-20 12:19:54,751 - main - INFO - Chat response completed for session 92bfa748-d294-41b2-967b-cb5401cc600c
+2025-08-20 12:19:54,756 - main - INFO - Chat request received: session_id=92bfa748-d294-41b2-967b-cb5401cc600c, message_length=20
+2025-08-20 12:19:54,761 - main - INFO - AI response generated for session 92bfa748-d294-41b2-967b-cb5401cc600c
+2025-08-20 12:19:54,762 - main - INFO - Extracted data for session 92bfa748-d294-41b2-967b-cb5401cc600c: {'user_name': 'Interested In Selling My Property', 'user_phone_number': '', 'user_email': 'john.smith@email.com', 'user_contact_preference': '', 'user_buying_or_selling': 'selling', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:19:54,762 - main - INFO - Completion rate: 60.0%
+2025-08-20 12:19:54,762 - main - INFO - Conversation complete: False
+2025-08-20 12:19:54,764 - main - INFO - Chat response completed for session 92bfa748-d294-41b2-967b-cb5401cc600c
+2025-08-20 12:19:54,768 - main - INFO - Chat request received: session_id=92bfa748-d294-41b2-967b-cb5401cc600c, message_length=71
+2025-08-20 12:19:54,774 - main - INFO - AI response generated for session 92bfa748-d294-41b2-967b-cb5401cc600c
+2025-08-20 12:19:54,775 - main - INFO - Extracted data for session 92bfa748-d294-41b2-967b-cb5401cc600c: {'user_name': 'Interested In Selling My Property', 'user_phone_number': '555-123-4567', 'user_email': 'john.smith@email.com', 'user_contact_preference': '', 'user_buying_or_selling': 'selling', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:19:54,775 - main - INFO - Completion rate: 86.66666666666667%
+2025-08-20 12:19:54,775 - main - INFO - Conversation complete: True
+2025-08-20 12:19:54,777 - main - INFO - Chat response completed for session 92bfa748-d294-41b2-967b-cb5401cc600c
+2025-08-20 12:19:56,786 - main - INFO - Admin login successful: admin
+2025-08-20 12:19:57,300 - main - INFO - Welcome email sent successfully to john.smith@email.com
+2025-08-20 12:19:59,925 - main - INFO - Notification email sent successfully for lead: Interested In Selling My Property
+2025-08-20 12:20:53,419 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 12:20:53,426 - database - INFO - Database indexes created successfully
+2025-08-20 12:20:53,427 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 12:21:16,850 - main - INFO - Admin login successful: admin
+2025-08-20 12:29:47,557 - main - INFO - Admin login successful: admin
+2025-08-20 12:31:01,860 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 12:31:01,867 - database - INFO - Database indexes created successfully
+2025-08-20 12:31:01,869 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 12:31:21,244 - main - INFO - Admin login successful: admin
+2025-08-20 12:32:43,261 - main - INFO - Chat request received: session_id=None, message_length=47
+2025-08-20 12:32:43,263 - main - INFO - New conversation started: a13a6850-19d9-4ee8-b0d6-5ae035d06bd9
+2025-08-20 12:32:43,268 - main - INFO - AI response generated for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9
+2025-08-20 12:32:43,271 - main - INFO - Extracted data for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9: {'user_name': 'Looking To Buy A House In Downtown Area', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': 'buying', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:32:43,271 - main - INFO - Completion rate: 46.666666666666664%
+2025-08-20 12:32:43,271 - main - INFO - Conversation complete: False
+2025-08-20 12:32:43,273 - main - INFO - Chat response completed for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9
+2025-08-20 12:32:43,279 - main - INFO - Chat request received: session_id=a13a6850-19d9-4ee8-b0d6-5ae035d06bd9, message_length=24
+2025-08-20 12:32:43,283 - main - INFO - AI response generated for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9
+2025-08-20 12:32:43,283 - main - INFO - Extracted data for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9: {'user_name': 'Looking To Buy A House In Downtown Area', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': 'buying', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:32:43,283 - main - INFO - Completion rate: 46.666666666666664%
+2025-08-20 12:32:43,283 - main - INFO - Conversation complete: False
+2025-08-20 12:32:43,288 - database - ERROR - Error saving conversation a13a6850-19d9-4ee8-b0d6-5ae035d06bd9: After applying the update, the (immutable) field '_id' was found to have been altered to _id: "68a57a1bc87b4840826f938c", full error: {'index': 0, 'code': 66, 'errmsg': 'After applying the update, the (immutable) field \'_id\' was found to have been altered to _id: "68a57a1bc87b4840826f938c"'}
+2025-08-20 12:32:43,288 - main - INFO - Chat response completed for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9
+2025-08-20 12:32:43,292 - main - INFO - Chat request received: session_id=a13a6850-19d9-4ee8-b0d6-5ae035d06bd9, message_length=23
+2025-08-20 12:32:43,299 - main - INFO - AI response generated for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9
+2025-08-20 12:32:43,299 - main - INFO - Extracted data for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9: {'user_name': 'Looking To Buy A House In Downtown Area', 'user_phone_number': '', 'user_email': 'alice.johnson@email.com', 'user_contact_preference': '', 'user_buying_or_selling': 'buying', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:32:43,299 - main - INFO - Completion rate: 66.66666666666667%
+2025-08-20 12:32:43,299 - main - INFO - Conversation complete: False
+2025-08-20 12:32:43,301 - database - ERROR - Error saving conversation a13a6850-19d9-4ee8-b0d6-5ae035d06bd9: After applying the update, the (immutable) field '_id' was found to have been altered to _id: "68a57a1bc87b4840826f938c", full error: {'index': 0, 'code': 66, 'errmsg': 'After applying the update, the (immutable) field \'_id\' was found to have been altered to _id: "68a57a1bc87b4840826f938c"'}
+2025-08-20 12:32:43,301 - main - INFO - Chat response completed for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9
+2025-08-20 12:32:43,305 - main - INFO - Chat request received: session_id=a13a6850-19d9-4ee8-b0d6-5ae035d06bd9, message_length=80
+2025-08-20 12:32:43,312 - main - INFO - AI response generated for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9
+2025-08-20 12:32:43,312 - main - INFO - Extracted data for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9: {'user_name': 'Looking To Buy A House In Downtown Area', 'user_phone_number': '555-999-8888', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': 'buying', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '$300', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:32:43,312 - main - INFO - Completion rate: 73.33333333333333%
+2025-08-20 12:32:43,312 - main - INFO - Conversation complete: False
+2025-08-20 12:32:43,314 - database - ERROR - Error saving conversation a13a6850-19d9-4ee8-b0d6-5ae035d06bd9: After applying the update, the (immutable) field '_id' was found to have been altered to _id: "68a57a1bc87b4840826f938c", full error: {'index': 0, 'code': 66, 'errmsg': 'After applying the update, the (immutable) field \'_id\' was found to have been altered to _id: "68a57a1bc87b4840826f938c"'}
+2025-08-20 12:32:43,314 - main - INFO - Chat response completed for session a13a6850-19d9-4ee8-b0d6-5ae035d06bd9
+2025-08-20 12:32:45,322 - main - INFO - Admin login successful: admin
+2025-08-20 12:32:45,351 - main - ERROR - Error updating lead status for a13a6850-19d9-4ee8-b0d6-5ae035d06bd9: 'username'
+2025-08-20 12:32:45,379 - main - INFO - New admin user created: test_agent by admin
+2025-08-20 12:33:09,743 - main - INFO - Admin logout: admin
+2025-08-20 12:33:11,699 - main - INFO - Admin login successful: admin
+2025-08-20 12:33:39,864 - main - INFO - Chat request received: session_id=None, message_length=4
+2025-08-20 12:33:39,866 - main - INFO - New conversation started: e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:33:39,870 - main - INFO - AI response generated for session e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:33:39,871 - main - INFO - Extracted data for session e77af724-6b95-4bcb-a90f-7797c17947b8: {'user_name': '', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:33:39,871 - main - INFO - Completion rate: 0.0%
+2025-08-20 12:33:39,871 - main - INFO - Conversation complete: False
+2025-08-20 12:33:39,873 - main - INFO - Chat response completed for session e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:33:48,940 - main - INFO - Chat request received: session_id=e77af724-6b95-4bcb-a90f-7797c17947b8, message_length=20
+2025-08-20 12:33:48,947 - main - INFO - AI response generated for session e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:33:48,948 - main - INFO - Extracted data for session e77af724-6b95-4bcb-a90f-7797c17947b8: {'user_name': '', 'user_phone_number': '', 'user_email': 'fahmad.ktk@gmail.com', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:33:48,948 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:33:48,948 - main - INFO - Conversation complete: False
+2025-08-20 12:33:48,950 - database - ERROR - Error saving conversation e77af724-6b95-4bcb-a90f-7797c17947b8: After applying the update, the (immutable) field '_id' was found to have been altered to _id: "68a57a53c87b4840826f938d", full error: {'index': 0, 'code': 66, 'errmsg': 'After applying the update, the (immutable) field \'_id\' was found to have been altered to _id: "68a57a53c87b4840826f938d"'}
+2025-08-20 12:33:48,950 - main - INFO - Chat response completed for session e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:33:55,484 - main - INFO - Chat request received: session_id=e77af724-6b95-4bcb-a90f-7797c17947b8, message_length=3
+2025-08-20 12:33:55,490 - main - INFO - AI response generated for session e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:33:55,490 - main - INFO - Extracted data for session e77af724-6b95-4bcb-a90f-7797c17947b8: {'user_name': '', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': 'buying', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:33:55,490 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:33:55,490 - main - INFO - Conversation complete: False
+2025-08-20 12:33:55,492 - database - ERROR - Error saving conversation e77af724-6b95-4bcb-a90f-7797c17947b8: After applying the update, the (immutable) field '_id' was found to have been altered to _id: "68a57a53c87b4840826f938d", full error: {'index': 0, 'code': 66, 'errmsg': 'After applying the update, the (immutable) field \'_id\' was found to have been altered to _id: "68a57a53c87b4840826f938d"'}
+2025-08-20 12:33:55,492 - main - INFO - Chat response completed for session e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:34:05,549 - main - INFO - Chat request received: session_id=e77af724-6b95-4bcb-a90f-7797c17947b8, message_length=20
+2025-08-20 12:34:05,556 - main - INFO - AI response generated for session e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:34:05,557 - main - INFO - Extracted data for session e77af724-6b95-4bcb-a90f-7797c17947b8: {'user_name': '', 'user_phone_number': '', 'user_email': 'fahmad.ktk@gmail.xom', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:34:05,557 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:34:05,557 - main - INFO - Conversation complete: False
+2025-08-20 12:34:05,559 - database - ERROR - Error saving conversation e77af724-6b95-4bcb-a90f-7797c17947b8: After applying the update, the (immutable) field '_id' was found to have been altered to _id: "68a57a53c87b4840826f938d", full error: {'index': 0, 'code': 66, 'errmsg': 'After applying the update, the (immutable) field \'_id\' was found to have been altered to _id: "68a57a53c87b4840826f938d"'}
+2025-08-20 12:34:05,559 - main - INFO - Chat response completed for session e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:34:11,316 - main - INFO - Chat request received: session_id=e77af724-6b95-4bcb-a90f-7797c17947b8, message_length=3
+2025-08-20 12:34:11,323 - main - INFO - AI response generated for session e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:34:11,323 - main - INFO - Extracted data for session e77af724-6b95-4bcb-a90f-7797c17947b8: {'user_name': '', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': 'buying', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:34:11,323 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:34:11,324 - main - INFO - Conversation complete: False
+2025-08-20 12:34:11,326 - database - ERROR - Error saving conversation e77af724-6b95-4bcb-a90f-7797c17947b8: After applying the update, the (immutable) field '_id' was found to have been altered to _id: "68a57a53c87b4840826f938d", full error: {'index': 0, 'code': 66, 'errmsg': 'After applying the update, the (immutable) field \'_id\' was found to have been altered to _id: "68a57a53c87b4840826f938d"'}
+2025-08-20 12:34:11,326 - main - INFO - Chat response completed for session e77af724-6b95-4bcb-a90f-7797c17947b8
+2025-08-20 12:39:56,097 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 12:39:56,103 - database - INFO - Database indexes created successfully
+2025-08-20 12:39:56,104 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 12:40:01,910 - main - INFO - Admin login successful: admin
+2025-08-20 12:41:40,931 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 12:41:40,939 - database - INFO - Database indexes created successfully
+2025-08-20 12:41:40,940 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 12:42:24,634 - main - INFO - Chat request received: session_id=None, message_length=2
+2025-08-20 12:42:24,636 - main - INFO - New conversation started: 7cd03d38-ec8b-4461-989b-968db45f2ccf
+2025-08-20 12:42:24,643 - main - INFO - AI response generated for session 7cd03d38-ec8b-4461-989b-968db45f2ccf
+2025-08-20 12:42:24,647 - main - INFO - Extracted data for session 7cd03d38-ec8b-4461-989b-968db45f2ccf: {'user_name': '', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:42:24,647 - main - INFO - Completion rate: 0.0%
+2025-08-20 12:42:24,648 - main - INFO - Conversation complete: False
+2025-08-20 12:42:24,650 - main - INFO - Chat response completed for session 7cd03d38-ec8b-4461-989b-968db45f2ccf
+2025-08-20 12:42:24,654 - main - INFO - Chat request received: session_id=7cd03d38-ec8b-4461-989b-968db45f2ccf, message_length=4
+2025-08-20 12:42:24,658 - main - INFO - AI response generated for session 7cd03d38-ec8b-4461-989b-968db45f2ccf
+2025-08-20 12:42:24,658 - main - INFO - Extracted data for session 7cd03d38-ec8b-4461-989b-968db45f2ccf: {'user_name': '', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:42:24,659 - main - INFO - Completion rate: 0.0%
+2025-08-20 12:42:24,659 - main - INFO - Conversation complete: False
+2025-08-20 12:42:24,660 - main - INFO - Chat response completed for session 7cd03d38-ec8b-4461-989b-968db45f2ccf
+2025-08-20 12:42:24,665 - main - INFO - Chat request received: session_id=7cd03d38-ec8b-4461-989b-968db45f2ccf, message_length=20
+2025-08-20 12:42:24,671 - main - INFO - AI response generated for session 7cd03d38-ec8b-4461-989b-968db45f2ccf
+2025-08-20 12:42:24,672 - main - INFO - Extracted data for session 7cd03d38-ec8b-4461-989b-968db45f2ccf: {'user_name': '', 'user_phone_number': '', 'user_email': 'fahmad.ktk@gmail.com', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:42:24,672 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:42:24,672 - main - INFO - Conversation complete: False
+2025-08-20 12:42:24,675 - main - INFO - Chat response completed for session 7cd03d38-ec8b-4461-989b-968db45f2ccf
+2025-08-20 12:42:24,680 - main - INFO - Chat request received: session_id=7cd03d38-ec8b-4461-989b-968db45f2ccf, message_length=38
+2025-08-20 12:42:24,687 - main - INFO - AI response generated for session 7cd03d38-ec8b-4461-989b-968db45f2ccf
+2025-08-20 12:42:24,687 - main - INFO - Extracted data for session 7cd03d38-ec8b-4461-989b-968db45f2ccf: {'user_name': '', 'user_phone_number': '555-123-4567', 'user_email': 'fahmad.ktk@gmail.com', 'user_contact_preference': '', 'user_buying_or_selling': 'buying', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:42:24,687 - main - INFO - Completion rate: 66.66666666666667%
+2025-08-20 12:42:24,687 - main - INFO - Conversation complete: False
+2025-08-20 12:42:24,689 - main - INFO - Chat response completed for session 7cd03d38-ec8b-4461-989b-968db45f2ccf
+2025-08-20 12:42:26,701 - main - INFO - Admin login successful: admin
+2025-08-20 12:42:26,740 - main - INFO - Chat request received: session_id=None, message_length=19
+2025-08-20 12:42:26,742 - main - INFO - New conversation started: 42df7b0d-4ee9-4c32-99cb-c5e49be49310
+2025-08-20 12:42:26,748 - main - INFO - AI response generated for session 42df7b0d-4ee9-4c32-99cb-c5e49be49310
+2025-08-20 12:42:26,749 - main - INFO - Extracted data for session 42df7b0d-4ee9-4c32-99cb-c5e49be49310: {'user_name': 'Test User', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:42:26,749 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:42:26,749 - main - INFO - Conversation complete: False
+2025-08-20 12:42:26,751 - main - INFO - Chat response completed for session 42df7b0d-4ee9-4c32-99cb-c5e49be49310
+2025-08-20 12:42:26,756 - main - INFO - Chat request received: session_id=None, message_length=19
+2025-08-20 12:42:26,757 - main - INFO - New conversation started: f02e6dc6-6c4c-4ede-ad03-2c70c84030de
+2025-08-20 12:42:26,761 - main - INFO - AI response generated for session f02e6dc6-6c4c-4ede-ad03-2c70c84030de
+2025-08-20 12:42:26,762 - main - INFO - Extracted data for session f02e6dc6-6c4c-4ede-ad03-2c70c84030de: {'user_name': 'Test User', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:42:26,762 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:42:26,762 - main - INFO - Conversation complete: False
+2025-08-20 12:42:26,764 - main - INFO - Chat response completed for session f02e6dc6-6c4c-4ede-ad03-2c70c84030de
+2025-08-20 12:42:26,768 - main - INFO - Chat request received: session_id=None, message_length=19
+2025-08-20 12:42:26,769 - main - INFO - New conversation started: 1b6b399d-26ba-4799-a10c-099631fa64a7
+2025-08-20 12:42:26,773 - main - INFO - AI response generated for session 1b6b399d-26ba-4799-a10c-099631fa64a7
+2025-08-20 12:42:26,773 - main - INFO - Extracted data for session 1b6b399d-26ba-4799-a10c-099631fa64a7: {'user_name': 'Test User', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:42:26,774 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:42:26,774 - main - INFO - Conversation complete: False
+2025-08-20 12:42:26,775 - main - INFO - Chat response completed for session 1b6b399d-26ba-4799-a10c-099631fa64a7
+2025-08-20 12:43:21,639 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 12:43:21,646 - database - INFO - Database indexes created successfully
+2025-08-20 12:43:21,647 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 12:43:50,932 - main - INFO - Admin login successful: admin
+2025-08-20 12:47:58,520 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 12:47:58,527 - database - INFO - Database indexes created successfully
+2025-08-20 12:47:58,528 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 12:48:10,450 - main - INFO - Admin login successful: admin
+2025-08-20 12:48:27,163 - main - INFO - Chat request received: session_id=None, message_length=2
+2025-08-20 12:48:27,165 - main - INFO - New conversation started: 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe
+2025-08-20 12:48:29,347 - main - INFO - AI response generated for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe
+2025-08-20 12:48:29,351 - main - INFO - Extracted data for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe: {'user_name': '', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:48:29,352 - main - INFO - Completion rate: 0.0%
+2025-08-20 12:48:29,352 - main - INFO - Conversation complete: False
+2025-08-20 12:48:29,354 - main - INFO - Chat response completed for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe
+2025-08-20 12:48:29,362 - main - INFO - Chat request received: session_id=67feb1be-de8e-4b02-932c-c6a5d2bf0ebe, message_length=4
+2025-08-20 12:48:31,776 - main - INFO - AI response generated for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe
+2025-08-20 12:48:31,777 - main - INFO - Extracted data for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe: {'user_name': '', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:48:31,777 - main - INFO - Completion rate: 0.0%
+2025-08-20 12:48:31,777 - main - INFO - Conversation complete: False
+2025-08-20 12:48:31,779 - main - INFO - Chat response completed for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe
+2025-08-20 12:48:31,785 - main - INFO - Chat request received: session_id=67feb1be-de8e-4b02-932c-c6a5d2bf0ebe, message_length=20
+2025-08-20 12:48:34,289 - main - INFO - AI response generated for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe
+2025-08-20 12:48:34,290 - main - INFO - Extracted data for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe: {'user_name': '', 'user_phone_number': '', 'user_email': 'fahmad.ktk@gmail.com', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:48:34,290 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:48:34,290 - main - INFO - Conversation complete: False
+2025-08-20 12:48:34,292 - main - INFO - Chat response completed for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe
+2025-08-20 12:48:34,298 - main - INFO - Chat request received: session_id=67feb1be-de8e-4b02-932c-c6a5d2bf0ebe, message_length=38
+2025-08-20 12:48:37,360 - main - INFO - AI response generated for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe
+2025-08-20 12:48:37,361 - main - INFO - Extracted data for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe: {'user_name': '', 'user_phone_number': '555-123-4567', 'user_email': 'fahmad.ktk@gmail.com', 'user_contact_preference': '', 'user_buying_or_selling': 'buying', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': 'Single Family Home', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:48:37,361 - main - INFO - Completion rate: 66.66666666666667%
+2025-08-20 12:48:37,361 - main - INFO - Conversation complete: False
+2025-08-20 12:48:37,364 - main - INFO - Chat response completed for session 67feb1be-de8e-4b02-932c-c6a5d2bf0ebe
+2025-08-20 12:48:39,373 - main - INFO - Admin login successful: admin
+2025-08-20 12:48:39,427 - main - INFO - Chat request received: session_id=None, message_length=19
+2025-08-20 12:48:39,429 - main - INFO - New conversation started: 1ce4cf50-d1bb-45b4-b1ee-b06fa083b65c
+2025-08-20 12:48:42,510 - main - INFO - AI response generated for session 1ce4cf50-d1bb-45b4-b1ee-b06fa083b65c
+2025-08-20 12:48:42,511 - main - INFO - Extracted data for session 1ce4cf50-d1bb-45b4-b1ee-b06fa083b65c: {'user_name': 'Test User', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:48:42,511 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:48:42,511 - main - INFO - Conversation complete: False
+2025-08-20 12:48:42,514 - main - INFO - Chat response completed for session 1ce4cf50-d1bb-45b4-b1ee-b06fa083b65c
+2025-08-20 12:48:42,520 - main - INFO - Chat request received: session_id=None, message_length=19
+2025-08-20 12:48:42,522 - main - INFO - New conversation started: 2e00d480-2454-4ec1-8510-5a157ce264af
+2025-08-20 12:48:44,242 - main - INFO - AI response generated for session 2e00d480-2454-4ec1-8510-5a157ce264af
+2025-08-20 12:48:44,242 - main - INFO - Extracted data for session 2e00d480-2454-4ec1-8510-5a157ce264af: {'user_name': 'Test User', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:48:44,243 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:48:44,243 - main - INFO - Conversation complete: False
+2025-08-20 12:48:44,245 - main - INFO - Chat response completed for session 2e00d480-2454-4ec1-8510-5a157ce264af
+2025-08-20 12:48:44,250 - main - INFO - Chat request received: session_id=None, message_length=19
+2025-08-20 12:48:44,251 - main - INFO - New conversation started: 0c87688a-eace-4bc7-ab8e-25dc2fcb8b93
+2025-08-20 12:48:46,509 - main - INFO - AI response generated for session 0c87688a-eace-4bc7-ab8e-25dc2fcb8b93
+2025-08-20 12:48:46,510 - main - INFO - Extracted data for session 0c87688a-eace-4bc7-ab8e-25dc2fcb8b93: {'user_name': 'Test User', 'user_phone_number': '', 'user_email': '', 'user_contact_preference': '', 'user_buying_or_selling': '', 'user_timeline': '', 'user_urgency': '', 'user_experience_level': '', 'user_property_address': '', 'user_property_type': '', 'user_year_built': '', 'user_square_footage': '', 'user_number_of_bedrooms': '', 'user_number_of_bathrooms': '', 'user_lot_size': '', 'user_recent_renovations_or_upgrades': '', 'user_current_condition_assessment': '', 'user_target_areas': '', 'user_budget_range': '', 'user_property_preferences': '', 'user_financing_status': '', 'user_motivation': '', 'user_concerns': ''}
+2025-08-20 12:48:46,510 - main - INFO - Completion rate: 20.0%
+2025-08-20 12:48:46,510 - main - INFO - Conversation complete: False
+2025-08-20 12:48:46,512 - main - INFO - Chat response completed for session 0c87688a-eace-4bc7-ab8e-25dc2fcb8b93
+2025-08-20 13:07:05,642 - main - INFO - Admin login successful: admin
+2025-08-20 13:10:24,957 - database - INFO - Connected to MongoDB at mongodb://localhost:27017
+2025-08-20 13:10:24,963 - database - INFO - Database indexes created successfully
+2025-08-20 13:10:24,965 - main - INFO - Default admin user initialized (username: admin, password: admin123)
+2025-08-20 13:10:48,898 - main - INFO - Admin login successful: admin
+2025-08-20 13:11:11,246 - database - INFO - Disconnected from MongoDB

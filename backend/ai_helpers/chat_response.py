@@ -20,17 +20,39 @@ except ImportError:
                     def __init__(self, text):
                         self.text = text
 
-                # Simple mock responses for testing
-                if "name" in prompt.lower() and not any(name in prompt.lower() for name in ["john", "jane", "smith"]):
-                    return MockResponse("Thank you for reaching out! I'd be happy to help you with your real estate needs. To get started, could you please tell me your name?")
-                elif "email" in prompt.lower() and "@" not in prompt:
-                    return MockResponse("Great to meet you! What's the best email address where I can reach you?")
-                elif "phone" in prompt.lower() and not any(char.isdigit() for char in prompt):
+                # Improved mock responses that progress the conversation
+                prompt_lower = prompt.lower()
+
+                # Check if user provided name
+                if any(word in prompt_lower for word in ["my name is", "i'm", "i am", "call me"]) or (len(prompt.split()) <= 3 and not "@" in prompt and not any(char.isdigit() for char in prompt)):
+                    if "@" not in prompt and not any(char.isdigit() for char in prompt):
+                        return MockResponse("Nice to meet you! What's the best email address where I can reach you?")
+
+                # Check if user provided email
+                elif "@" in prompt and "." in prompt:
                     return MockResponse("Perfect! And what's your phone number so we can follow up with you?")
-                elif "buy" in prompt.lower() or "sell" in prompt.lower():
-                    return MockResponse("Excellent! I can help you with that. Are you looking to buy or sell a property?")
+
+                # Check if user provided phone
+                elif any(char.isdigit() for char in prompt) and len([c for c in prompt if c.isdigit()]) >= 7:
+                    return MockResponse("Great! Are you looking to buy or sell a property?")
+
+                # Check if user specified buy/sell intent
+                elif "buy" in prompt_lower or "purchase" in prompt_lower:
+                    return MockResponse("Excellent! I can help you find the perfect property. What type of property are you looking for? (house, condo, townhouse, etc.)")
+                elif "sell" in prompt_lower:
+                    return MockResponse("Great! I can help you sell your property. What type of property are you looking to sell?")
+
+                # Property type response
+                elif any(prop_type in prompt_lower for prop_type in ["house", "condo", "apartment", "townhouse", "property"]):
+                    return MockResponse("Perfect! What's your budget range for this property?")
+
+                # Budget response
+                elif any(budget_word in prompt_lower for budget_word in ["$", "dollar", "thousand", "k", "budget", "price"]) or any(char.isdigit() for char in prompt):
+                    return MockResponse("Excellent! Thank you for providing all that information. I have everything I need to get started helping you. One of our expert agents will contact you within 24 hours to discuss your needs in detail. Is there anything else you'd like to know about our services?")
+
+                # Default first message
                 else:
-                    return MockResponse("Thank you for your message! I'm here to help you with all your real estate needs. Whether you're buying, selling, or just exploring your options, I can provide you with expert guidance and market insights. What specific questions do you have about real estate?")
+                    return MockResponse("Hi! I'm AIREA, your AI Real Estate Assistant. 👋 To get started, what's your name?")
 
     genai = MockGenAI()
     GENAI_AVAILABLE = False
@@ -65,32 +87,41 @@ def chat_response(history, user_input, context=None):
         return "I'm sorry, I'm having trouble connecting to the AI service. Please try again in a moment."
     
     # Read system prompt
-    system_prompt_path = os.getenv("SYSTEM_PROMPT_PATH", "stem_prompt.txt")
+    system_prompt_path = os.getenv("SYSTEM_PROMPT_PATH", "system_prompt.txt")
     try:
         with open(system_prompt_path, "r", encoding="utf-8") as f:
             system_prompt = f.read()
     except FileNotFoundError:
         system_prompt = """
-        You are the official AI assistant for ListingOne.ai, a real estate platform.
-        Your role is to collect complete user data for lead generation and CRM.
+        You are AIREA, a professional AI Real Estate Assistant for ListingOne.ai.
 
-        PRIMARY OBJECTIVES:
-        1. Collect Name, Email, and Phone Number FIRST
-        2. Determine if they're a BUYER or SELLER
-        3. Gather property-specific information
-        4. Provide value through property insights
-        5. Schedule consultations
+        CONVERSATION OBJECTIVES:
+        1. Collect complete user information for lead generation
+        2. Understand their real estate needs
+        3. Provide helpful guidance and insights
+
+        REQUIRED INFORMATION TO COLLECT (in order):
+        1. Full Name
+        2. Email Address
+        3. Phone Number
+        4. Intent (Buying or Selling)
+        5. Property details
+
+        CONVERSATION FLOW RULES:
+        - Ask ONE question at a time
+        - Always acknowledge what the user just shared before asking the next question
+        - Keep responses concise (under 50 words when collecting data)
+        - Be natural and conversational, not robotic
+        - Use their name once you know it
+        - Progress through the flow naturally based on what information you already have
 
         CONVERSATION FLOW:
-        1. Greet and ask for NAME
-        2. Ask for EMAIL
-        3. Ask for PHONE
-        4. Ask if BUYING or SELLING
-        5. Collect property details based on type
-        6. Offer consultation scheduling
-
-        Keep responses conversational, helpful, and under 50 words when collecting data.
-        Confirm each piece of information before proceeding.
+        1. GREETING: Welcome them and ask for their name
+        2. EMAIL: Once you have their name, ask for their email
+        3. PHONE: Once you have email, ask for their phone number
+        4. INTENT: Ask if they're looking to buy or sell
+        5. PROPERTY DETAILS: Ask about location, type, budget/timeline
+        6. CONSULTATION: Offer to schedule a consultation
         """
     
     # Add current interaction to history
