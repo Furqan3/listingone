@@ -65,3 +65,43 @@ user_data
 2025-08-19 10:52:02,788 - main - INFO - Chat request received: session_id=7295910a-e4d3-43a8-beca-f7c5fe12a972, message_length=2
 2025-08-19 10:52:06,934 - main - INFO - AI response generated for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
 2025-08-19 10:52:06,935 - main - INFO - Chat response completed for session 7295910a-e4d3-43a8-beca-f7c5fe12a972
+2025-08-19 11:13:22,611 - main - INFO - Chat request received: session_id=None, message_length=6
+2025-08-19 11:13:22,611 - main - INFO - New conversation started: 42d5dd40-76a5-445f-9480-7cafdde782f1
+2025-08-19 11:13:22,612 - main - ERROR - Chat error for session None: 'completion_rate'
+2025-08-19 11:13:54,017 - main - INFO - Chat request received: session_id=None, message_length=12
+2025-08-19 11:13:54,018 - main - INFO - New conversation started: 11643b83-f3c8-4a87-b113-0659215b58d7
+2025-08-19 11:13:54,018 - main - ERROR - Chat error for session None: 'completion_rate'
+2025-08-20 09:31:13,513 - main - INFO - Chat request received: session_id=None, message_length=12
+2025-08-20 09:31:13,514 - main - INFO - New conversation started: 9a67294f-fa97-4d8c-8f06-53963356c928
+2025-08-20 09:31:16,383 - main - INFO - AI response generated for session 9a67294f-fa97-4d8c-8f06-53963356c928
+2025-08-20 09:31:16,384 - main - INFO - Chat response completed for session 9a67294f-fa97-4d8c-8f06-53963356c928
+2025-08-20 09:38:27,525 - main - INFO - Chat request received: session_id=None, message_length=12
+2025-08-20 09:38:27,526 - main - INFO - New conversation started: abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:38:29,996 - main - INFO - AI response generated for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:38:29,996 - main - INFO - Chat response completed for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:38:44,228 - main - INFO - Chat request received: session_id=abfca5b7-3ce9-40c1-a8e3-393c3595da89, message_length=20
+2025-08-20 09:38:46,728 - main - INFO - AI response generated for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:38:46,728 - main - INFO - Chat response completed for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:38:58,048 - main - INFO - Chat request received: session_id=abfca5b7-3ce9-40c1-a8e3-393c3595da89, message_length=13
+2025-08-20 09:39:00,014 - main - INFO - AI response generated for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:39:00,014 - main - INFO - Chat response completed for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:39:08,025 - main - INFO - Chat request received: session_id=abfca5b7-3ce9-40c1-a8e3-393c3595da89, message_length=6
+2025-08-20 09:39:10,312 - main - INFO - AI response generated for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:39:10,312 - main - INFO - Data validation for session abfca5b7-3ce9-40c1-a8e3-393c3595da89: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 09:39:10,313 - main - INFO - Chat response completed for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:39:36,001 - main - INFO - Chat request received: session_id=abfca5b7-3ce9-40c1-a8e3-393c3595da89, message_length=5
+2025-08-20 09:39:38,552 - main - INFO - AI response generated for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:39:38,553 - main - INFO - Data validation for session abfca5b7-3ce9-40c1-a8e3-393c3595da89: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 09:39:38,553 - main - INFO - Chat response completed for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:39:58,208 - main - INFO - Chat request received: session_id=abfca5b7-3ce9-40c1-a8e3-393c3595da89, message_length=3
+2025-08-20 09:40:01,023 - main - INFO - AI response generated for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:40:01,023 - main - INFO - Data validation for session abfca5b7-3ce9-40c1-a8e3-393c3595da89: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 09:40:01,024 - main - INFO - Chat response completed for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:40:13,084 - main - INFO - Chat request received: session_id=abfca5b7-3ce9-40c1-a8e3-393c3595da89, message_length=24
+2025-08-20 09:40:15,480 - main - INFO - AI response generated for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:40:15,481 - main - INFO - Data validation for session abfca5b7-3ce9-40c1-a8e3-393c3595da89: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 09:40:15,481 - main - INFO - Chat response completed for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:40:23,066 - main - INFO - Chat request received: session_id=abfca5b7-3ce9-40c1-a8e3-393c3595da89, message_length=6
+2025-08-20 09:40:25,861 - main - INFO - AI response generated for session abfca5b7-3ce9-40c1-a8e3-393c3595da89
+2025-08-20 09:40:25,862 - main - INFO - Data validation for session abfca5b7-3ce9-40c1-a8e3-393c3595da89: {'is_valid': False, 'issues': ['Missing user_name', 'Missing user_email', 'Missing user_phone_number', 'Missing user_buying_or_selling'], 'completeness_score': 0.0, 'quality_score': 100}
+2025-08-20 09:40:25,863 - main - INFO - Chat response completed for session abfca5b7-3ce9-40c1-a8e3-393c3595da89

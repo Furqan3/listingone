@@ -1,4 +1,4 @@
-from ai_helpers.chat_respose import chat_response
+from ai_helpers.chat_response import chat_response
 from ai_helpers.structure_response import structure_response
 
 if __name__ == "__main__":
